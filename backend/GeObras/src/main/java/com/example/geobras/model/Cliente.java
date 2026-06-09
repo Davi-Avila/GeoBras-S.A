@@ -15,7 +15,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCliente;
 
-    private String nome;
+    private String nomeCliente;
     private String email;
     private String pais;
     private String CEP;

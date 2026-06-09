@@ -16,7 +16,7 @@ public class Obra {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idObra;
 
-    private String nome;
+    private String nomeObra;
     private String endereco;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -25,7 +25,6 @@ public class Obra {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataFimPrevisto;
 
-    private Double orcamentoTotal;
     private String etapa;
 
     @OneToOne

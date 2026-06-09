@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,11 +16,13 @@ public class Orcamento {
     private Long id;
 
     private Double deslocamento;
-    private String material;
+    private List<String> materiais = new ArrayList<>();
+    private List<Double> valorMateriais = new ArrayList<>();
     private Integer maoDeObra;
     private String servico;
     private Double aluguelDeEquipamento;
     private Double imposto;
+    private Double orcamentoTotal;
 
 
 }
