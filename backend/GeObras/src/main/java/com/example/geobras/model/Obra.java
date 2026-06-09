@@ -35,5 +35,5 @@ public class Obra {
     @JoinColumn(name = "idCliente")
     private Cliente cliente;
 
-
+    public Obra(){}
 }

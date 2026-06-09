@@ -16,13 +16,14 @@ public class Orcamento {
     private Long id;
 
     private Double deslocamento;
-    private List<String> materiais = new ArrayList<>();
-    private List<Double> valorMateriais = new ArrayList<>();
     private Integer maoDeObra;
     private String servico;
     private Double aluguelDeEquipamento;
     private Double imposto;
     private Double orcamentoTotal;
 
+    @OneToMany(mappedBy = "orcamento")
+    private List<Material> materiais = new ArrayList<>();
 
+    public Orcamento(){}
 }

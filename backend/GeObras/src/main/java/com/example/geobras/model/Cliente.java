@@ -25,4 +25,5 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Obra> obras = new ArrayList<>();
 
+    public Cliente(){}
 }
