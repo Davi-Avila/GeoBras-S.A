@@ -60,6 +60,11 @@ public class OrcamentoService {
 
         return toResponseDTO(atualizado);
     }
+    public void deletar(Long id){
+        Orcamento orcamento = repository.findById(id).orElseThrow(() ->new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
+        
+        repository.delete(orcamento);
+    }
     private  Double calcularOrcamentoTotal(Double imposto, Double aluguel, Double deslocamento){
         Double valor = ( aluguel + imposto + deslocamento);
         return valor;
