@@ -10,7 +10,7 @@ import lombok.Setter;
 public class Material {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idMaterial;
 
     private String nomeMaterial;
     private Double valorMaterial;

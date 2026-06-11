@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record MaterialRequestDTO(
+
         @NotBlank(message = "Insira o nome do Material")
         String nomeMaterial,
 
