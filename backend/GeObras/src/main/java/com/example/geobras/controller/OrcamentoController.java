@@ -22,6 +22,11 @@ public class OrcamentoController {
     public List<OrcamentoResponseDTO> listar(){
         return service.listar();
     }
+    
+    @GetMapping("/{id}")
+    public OrcamentoResponseDTO buscarPorId(@PathVariable Long id){
+        return service.buscarPorId(id);
+    }
 
     @PostMapping
     public OrcamentoResponseDTO salvar(@RequestBody @Valid OrcamentoRequestDTO dto){

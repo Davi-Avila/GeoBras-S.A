@@ -45,6 +45,11 @@ public class OrcamentoService {
     public List<OrcamentoResponseDTO> listar(){
         return repository.findAll().stream().map(this::toResponseDTO).toList();
     }
+    public OrcamentoResponseDTO buscarPorId(Long id){
+        Orcamento orcamento = repository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
+
+        return toResponseDTO(orcamento);
+    }
 
     public OrcamentoResponseDTO atualizar(Long id, OrcamentoRequestDTO dto){
         Orcamento orcamento = repository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
