@@ -1,8 +1,11 @@
 package com.example.geobras.service;
 
+import com.example.geobras.dto.ObraRequestDTO;
 import com.example.geobras.dto.ObraResponseDTO;
 import com.example.geobras.exception.RecursoNaoEncontradoException;
+import com.example.geobras.model.Cliente;
 import com.example.geobras.model.Obra;
+import com.example.geobras.model.Orcamento;
 import com.example.geobras.repository.ObraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,14 +14,38 @@ import java.util.List;
 
 @Service
 public class ObraService {
-    @Autowired
-    private ObraRepository obraRepository;
+    private final ObraRepository obraRepository;
+    private final ClienteService clienteService;
+    private final OrcamentoService orcamentoService;
+
+    public ObraService(ObraRepository obraRepository, ClienteService clienteService, OrcamentoService orcamentoService){
+        this.obraRepository = obraRepository;
+        this.clienteService = clienteService;
+        this.orcamentoService = orcamentoService;
+    }
 
     public List<ObraResponseDTO> listar(){
         return obraRepository.findAll()
                 .stream()
                 .map(this::toResponseDTO)
                 .toList();
+    }
+
+    public ObraResponseDTO salvar(ObraRequestDTO dto){
+        Orcamento orcamento = orcamentoService.buscarEntidade(dto.idOrcamento());
+        Cliente cliente = clienteService.buscarEntidade(dto.idCliente());
+        Obra obra = new Obra();
+        obra.setNomeObra(dto.nomeObra());
+        obra.setEndereco(dto.endereco());
+        obra.setDataInicio(dto.dataInicio());
+        obra.setDataFimPrevisto(dto.dataFimPrevisto());
+        obra.setEtapa(dto.etapa());
+        obra.setOrcamento(orcamento);
+        obra.setCliente(cliente);
+
+        Obra salvo = obraRepository.save(obra);
+        return toResponseDTO(salvo);
+
     }
 
     public void deletar(Long idObra){

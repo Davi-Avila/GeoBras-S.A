@@ -45,6 +45,11 @@ public class OrcamentoService {
     public List<OrcamentoResponseDTO> listar(){
         return repository.findAll().stream().map(this::toResponseDTO).toList();
     }
+    public OrcamentoResponseDTO buscarPorId(Long id){
+        Orcamento orcamento = repository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
+
+        return toResponseDTO(orcamento);
+    }
 
     public OrcamentoResponseDTO atualizar(Long id, OrcamentoRequestDTO dto){
         Orcamento orcamento = repository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
@@ -68,6 +73,11 @@ public class OrcamentoService {
     private  Double calcularOrcamentoTotal(Double imposto, Double aluguel, Double deslocamento){
         Double valor = ( aluguel + imposto + deslocamento);
         return valor;
+    }
+
+    public Orcamento buscarEntidade(Long idOrcamento){
+        return repository.findById(idOrcamento)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado"));
     }
 
 }
