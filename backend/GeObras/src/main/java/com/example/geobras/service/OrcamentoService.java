@@ -70,4 +70,9 @@ public class OrcamentoService {
         return valor;
     }
 
+    public Orcamento buscarEntidade(Long idOrcamento){
+        return repository.findById(idOrcamento)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado"));
+    }
+
 }

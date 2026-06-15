@@ -12,8 +12,11 @@ import java.util.List;
 
 @Service
 public class ClienteService {
-    @Autowired
-    private ClienteRepository clienteRepository;
+    private final ClienteRepository clienteRepository;
+
+    public ClienteService(ClienteRepository clienteRepository){
+        this.clienteRepository = clienteRepository;
+    }
 
     public List<ClienteResponseDTO> listar(){
         return clienteRepository.findAll()
@@ -74,5 +77,10 @@ public class ClienteService {
                 cliente.getCPF(),
                 cliente.getCNPJ()
         );
+    }
+
+    public Cliente buscarEntidade(Long idCliente){
+        return clienteRepository.findById(idCliente)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Cliente não encontrado"));
     }
 }

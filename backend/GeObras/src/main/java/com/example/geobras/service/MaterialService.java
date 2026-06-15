@@ -11,9 +11,11 @@ import java.util.List;
 
 public class MaterialService {
     private final MaterialRepository materialRepository;
+    private final OrcamentoService orcamentoService;
 
-    public MaterialService(MaterialRepository repository) {
+    public MaterialService(MaterialRepository repository, OrcamentoService orcamentoService) {
         this.materialRepository = repository;
+        this.orcamentoService = orcamentoService;
     }
 
     public List<MaterialResponseDTO> listar(){
@@ -23,14 +25,18 @@ public class MaterialService {
                 .toList();
     }
 
-    /*public MaterialResponseDTO salvar(MaterialRequestDTO dto){
+    public MaterialResponseDTO salvar(MaterialRequestDTO dto){
         Material material = new Material();
-        Orcamento orcamento
+        Orcamento orcamento = orcamentoService.buscarEntidade(dto.idOrcamento());
         material.setNomeMaterial(dto.nomeMaterial());
         material.setValorMaterial(dto.valorMaterial());
         material.setQuantidade(dto.quantidade());
-        material.setOrcamento();
-    }*/
+        material.setOrcamento(orcamento);
+
+        Material salvo = materialRepository.save(material);
+        return toResponse(salvo);
+
+    }
 
 
 

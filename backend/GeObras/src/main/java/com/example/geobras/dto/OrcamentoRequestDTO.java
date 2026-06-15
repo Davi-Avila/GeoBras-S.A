@@ -4,8 +4,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.List;
-
 public record OrcamentoRequestDTO(
         @Min(value = 0, message = "Insira uma distância válida")
         @NotNull(message = "Insira o deslocamento")
