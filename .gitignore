@@ -1,0 +1,58 @@
+# ==============================
+# Vue.js / Node.js
+# ==============================
+node_modules/
+dist/
+dist-ssr/
+coverage/
+.temp/
+.cache/
+.eslintcache
+*.local
+.env
+.env.*
+!.env.example
+
+# ==============================
+# Java & Build Tools
+# ==============================
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+*.par
+
+# Maven / Gradle
+target/
+build/
+.gradle/
+.gradletasknamecache
+
+# ==============================
+# IntelliJ IDEA
+# ==============================
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ==============================
+# Visual Studio Code
+# ==============================
+.vscode/
+*.code-workspace
+
+# ==============================
+# OS & Logs
+# ==============================
+.DS_Store
+Thumbs.db
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+yarn-error.log*
+*.log
