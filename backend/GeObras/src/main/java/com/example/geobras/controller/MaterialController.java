@@ -29,12 +29,13 @@ public class MaterialController {
     public MaterialResponseDTO salvar(@RequestBody @Valid MaterialRequestDTO dto){
         return materialService.salvar(dto);
     }
-    /*
+
+    @Operation(summary = "Atualizar material", description = "Atualiza um material existente")
     @PutMapping
     public MaterialResponseDTO atualizar(@PathVariable Long idMaterial, @RequestBody @Valid MaterialRequestDTO dto){
-        return materialService.atualizar(
+        return materialService.atualizar(idMaterial, dto);
     }
-    */
+
     @Operation(summary = "Deletar material", description = "Deleta um material existente")
     @DeleteMapping("/{idMaterial}")
     public void deletar(@PathVariable Long idMaterial){

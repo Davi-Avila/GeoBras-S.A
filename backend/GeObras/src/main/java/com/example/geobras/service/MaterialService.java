@@ -40,6 +40,20 @@ public class MaterialService {
 
     }
 
+    public MaterialResponseDTO atualizar(Long idMaterial, MaterialRequestDTO dto){
+        Material existente = materialRepository.findById(idMaterial)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Material não encontrado"));
+
+        Orcamento orcamento = orcamentoService.buscarEntidade(dto.idOrcamento());
+        existente.setNomeMaterial(dto.nomeMaterial());
+        existente.setValorMaterial(dto.valorMaterial());
+        existente.setQuantidade(dto.quantidade());
+        existente.setOrcamento(orcamento);
+
+        Material atualizado = materialRepository.save(existente);
+        return toResponse(atualizado);
+    }
+
 
     public void deletar(Long idMaterial){
         Material material = materialRepository.findById(idMaterial)
