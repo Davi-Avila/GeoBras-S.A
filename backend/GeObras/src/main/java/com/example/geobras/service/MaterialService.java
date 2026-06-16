@@ -6,9 +6,11 @@ import com.example.geobras.exception.RecursoNaoEncontradoException;
 import com.example.geobras.model.Material;
 import com.example.geobras.model.Orcamento;
 import com.example.geobras.repository.MaterialRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MaterialService {
     private final MaterialRepository materialRepository;
     private final OrcamentoService orcamentoService;
@@ -37,7 +39,6 @@ public class MaterialService {
         return toResponse(salvo);
 
     }
-
 
 
     public void deletar(Long idMaterial){

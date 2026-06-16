@@ -48,11 +48,37 @@ public class ObraService {
 
     }
 
+    public ObraResponseDTO atualizar(Long idObra, ObraRequestDTO dto){
+        Obra existente = obraRepository.findById(idObra)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Obra não encontrada"));
+
+        Orcamento orcamento = orcamentoService.buscarEntidade(dto.idOrcamento());
+        Cliente cliente = clienteService.buscarEntidade(dto.idCliente());
+        existente.setNomeObra(dto.nomeObra());
+        existente.setEndereco(dto.endereco());
+        existente.setDataInicio(dto.dataInicio());
+        existente.setDataFimPrevisto(dto.dataFimPrevisto());
+        existente.setEtapa(dto.etapa());
+        existente.setOrcamento(orcamento);
+        existente.setCliente(cliente);
+
+        Obra atualizado = obraRepository.save(existente);
+        return toResponseDTO(atualizado);
+
+    }
+
     public void deletar(Long idObra){
         Obra obra = obraRepository.findById(idObra)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Obra não encontrada"));
 
         obraRepository.delete(obra);
+    }
+
+    public ObraResponseDTO buscarPorId(Long idObra){
+        Obra obra = obraRepository.findById(idObra)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Obra não encontrada"));
+
+        return toResponseDTO(obra);
     }
 
     private ObraResponseDTO toResponseDTO(Obra obra){

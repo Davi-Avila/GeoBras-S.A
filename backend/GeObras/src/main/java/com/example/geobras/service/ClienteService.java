@@ -39,17 +39,17 @@ public class ClienteService {
     }
 
     public ClienteResponseDTO atualizar(Long idCliente, ClienteRequestDTO dto){
-        Cliente cliente = clienteRepository.findById(idCliente)
+        Cliente existente = clienteRepository.findById(idCliente)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Cliente não encontrado"));
 
-        cliente.setNomeCliente(dto.nomeCliente());
-        cliente.setEmail(dto.email());
-        cliente.setPais(dto.pais());
-        cliente.setCEP(dto.CEP());
-        cliente.setCPF(dto.CPF());
-        cliente.setCNPJ(dto.CNPJ());
+        existente.setNomeCliente(dto.nomeCliente());
+        existente.setEmail(dto.email());
+        existente.setPais(dto.pais());
+        existente.setCEP(dto.CEP());
+        existente.setCPF(dto.CPF());
+        existente.setCNPJ(dto.CNPJ());
 
-        Cliente atualizado = clienteRepository.save(cliente);
+        Cliente atualizado = clienteRepository.save(existente);
         return toResponseDTO(atualizado);
     }
 

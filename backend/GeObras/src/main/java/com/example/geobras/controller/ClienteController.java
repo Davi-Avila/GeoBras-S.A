@@ -13,8 +13,11 @@ import java.util.List;             //DIFERENÇA DAS BRANCHS
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-    @Autowired
-    private ClienteService clienteService;
+    private final ClienteService clienteService;
+
+    public ClienteController(ClienteService clienteService){
+        this.clienteService = clienteService;
+    }
 
     @Operation(summary = "Listar cliente", description = "Lista todos os clientes cadastrados")
     @GetMapping
