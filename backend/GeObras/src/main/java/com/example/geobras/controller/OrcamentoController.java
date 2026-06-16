@@ -19,25 +19,25 @@ public class OrcamentoController {
         this.service = service;
     }
 
-    @Operation(summary = "", description = "Lista todos os orçamentos cadastrados")
+    @Operation(summary = "Listar orçamento", description = "Lista todos os orçamentos cadastrados")
     @GetMapping
     public List<OrcamentoResponseDTO> listar(){
         return service.listar();
     }
 
-    @Operation(summary = "", description = "")
+    @Operation(summary = "Buscar por id", description = "Busca o orçamento pelo id")
     @GetMapping("/{id}")
     public OrcamentoResponseDTO buscarPorId(@PathVariable Long id){
         return service.buscarPorId(id);
     }
 
-    @Operation(summary = "", description = "")
+    @Operation(summary = "Salvar orçamento", description = "Salva um novo orçamento")
     @PostMapping
     public OrcamentoResponseDTO salvar(@RequestBody @Valid OrcamentoRequestDTO dto){
         return service.salvar(dto);
     }
 
-    @Operation(summary = "", description = "")
+    @Operation(summary = "Atualizar orçamento", description = "Atualiza um orçamento existente")
     @PutMapping("/{id}")
     public OrcamentoResponseDTO atualizar(@RequestBody @Valid OrcamentoRequestDTO dto, @PathVariable Long id){
         return service.atualizar(id,dto);

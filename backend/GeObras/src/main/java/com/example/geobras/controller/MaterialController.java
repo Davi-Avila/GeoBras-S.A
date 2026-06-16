@@ -16,7 +16,7 @@ public class MaterialController {
         this.materialService = materialService;
     }
 
-    @Operation(summary = "Lista material", description = "Lista todos os materiais cadastrados")
+    @Operation(summary = "Listar material", description = "Lista todos os materiais cadastrados")
     @GetMapping
     public List<MaterialResponseDTO> lista(){
         return materialService.listar();
@@ -28,7 +28,7 @@ public class MaterialController {
         materialService.deletar(idMaterial);
     }
 
-    @Operation(summary = "", description = "")
+    @Operation(summary = "Buscar por id", description = "Busca o material pelo id")
     @GetMapping("/{idMaterial}")
     public MaterialResponseDTO buscarPorId(@PathVariable Long idMaterial){
         return materialService.buscarPorId(idMaterial);

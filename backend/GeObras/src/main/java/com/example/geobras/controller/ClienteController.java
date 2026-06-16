@@ -16,7 +16,7 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @Operation(summary = "Lista cliente", description = "Lista todos os clientes cadastrados")
+    @Operation(summary = "Listar cliente", description = "Lista todos os clientes cadastrados")
     @GetMapping
     public List<ClienteResponseDTO> listar(){
         return clienteService.listar();
@@ -40,7 +40,7 @@ public class ClienteController {
         clienteService.deletar(idCliente);
     }
 
-    @Operation(summary = "Buscar po id", description = "Busca o cliente pelo id")
+    @Operation(summary = "Buscar por id", description = "Busca o cliente pelo id")
     @GetMapping("/{idCliente}")
     public ClienteResponseDTO buscarPorId(@PathVariable Long idCliente){
         return clienteService.buscarPorId(idCliente);
