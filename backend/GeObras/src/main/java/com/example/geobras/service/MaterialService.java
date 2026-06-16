@@ -40,9 +40,6 @@ public class MaterialService {
 
 
 
-
-
-
     public void deletar(Long idMaterial){
         Material material = materialRepository.findById(idMaterial)
         .orElseThrow(()-> new RecursoNaoEncontradoException("Material não encontrado"));
