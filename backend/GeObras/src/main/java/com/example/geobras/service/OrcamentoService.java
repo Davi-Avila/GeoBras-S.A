@@ -25,7 +25,7 @@ public class OrcamentoService {
                 orcamento.getServico(),
                 orcamento.getAluguelDeEquipamento(),
                 orcamento.getImposto(),
-                calcularOrcamentoTotal(orcamento.getImposto(),orcamento.getAluguelDeEquipamento(), orcamento.getDeslocamento())
+                calcularOrcamentoTotal(orcamento.getImposto(),orcamento.getAluguelDeEquipamento(), orcamento.getDeslocamento(), orcamento.getMaoDeObra())
         );
     }
 
@@ -36,7 +36,7 @@ public class OrcamentoService {
         orcamento.setServico(dto.servico());
         orcamento.setAluguelDeEquipamento(dto.aluguelDeEquipamento());
         orcamento.setImposto(dto.imposto());
-        orcamento.setOrcamentoTotal(calcularOrcamentoTotal(dto.imposto(),dto.aluguelDeEquipamento(), dto.deslocamento()));
+        orcamento.setOrcamentoTotal(calcularOrcamentoTotal(dto.imposto(),dto.aluguelDeEquipamento(), dto.deslocamento(), dto.maoDeObra()));
 
         Orcamento salvo = repository.save(orcamento);
         return toResponseDTO(salvo);
@@ -60,7 +60,7 @@ public class OrcamentoService {
         orcamento.setServico(dto.servico());
         orcamento.setAluguelDeEquipamento(dto.aluguelDeEquipamento());
         orcamento.setImposto(dto.imposto());
-        orcamento.setOrcamentoTotal(calcularOrcamentoTotal(dto.imposto(), dto.aluguelDeEquipamento(), dto.deslocamento()));
+        orcamento.setOrcamentoTotal(calcularOrcamentoTotal(dto.imposto(), dto.aluguelDeEquipamento(), dto.deslocamento(), dto.maoDeObra()));
 
         Orcamento  atualizado = repository.save(orcamento);
 
@@ -71,8 +71,10 @@ public class OrcamentoService {
         
         repository.delete(orcamento);
     }
-    private  Double calcularOrcamentoTotal(Double imposto, Double aluguel, Double deslocamento){
-        Double valor = ( aluguel + imposto + deslocamento);
+    private  Double calcularOrcamentoTotal(Double imposto, Double aluguel, Double deslocamento, Double maoDeObra){
+        imposto *= 0.01;
+        Double valor = (maoDeObra + aluguel) + (deslocamento * 1.50);
+        valor += (valor * imposto);
         return valor;
     }
 

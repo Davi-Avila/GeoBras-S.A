@@ -16,7 +16,7 @@ public class Orcamento {
     private Long id;
 
     private Double deslocamento;
-    private Integer maoDeObra;
+    private Double maoDeObra;
     private String servico;
     private Double aluguelDeEquipamento;
     private Double imposto;

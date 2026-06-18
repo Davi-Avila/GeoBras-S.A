@@ -11,7 +11,7 @@ public record OrcamentoRequestDTO(
 
         @Min(value = 0, message = "Insira uma mão de obra válida")
         @NotNull(message = "Insira o valor da mão de obra")
-        Integer maoDeObra,
+        Double maoDeObra,
 
         @NotBlank(message = "Insira o tipo de serviço")
         String servico,
