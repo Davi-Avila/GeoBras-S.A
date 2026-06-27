@@ -13,12 +13,17 @@ const obra = ref ([] as Obra[])
 </script>
 
 <template>
-    <div class="container py-5">
-        <h1 class="fw-bold mb-1">
-            <i class="bi bi-houses"></i>Home
-        </h1>
-    </div>
-    <div>
-        <CardObra titulo="obra" icone="bi bi-css"></CardObra>
+    <div class="container ">
+        <CardObra titulo="obra"/>
+        
     </div>
 </template>
+<style>
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3%;
+  padding: 10%;
+}
+</style>

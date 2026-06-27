@@ -1,17 +1,35 @@
 <script setup lang="ts">
-
-
-
-defineProps(["titulo", "icone"])
+defineProps(["titulo", "icone"]);
 </script>
 <template>
-
-    <div class="card" style="width: 18% ">
-  <div class="card-body">
-    <h5 class="card-title">{{ titulo }}</h5>
-   
-    <i :class="icone"></i>
+  <div class="card-group" style="gap: 1rem;">
+    <RouterLink :to="`/obra`">
+      <div class="card  ">
+        <div class="card-body" style="text-align: center">
+          <i class="bi bi-buildings"></i>
+          <P></P>
+          <a typeof="/obra">Obras</a>
+        </div>
+      </div>
+    </RouterLink>
+    <RouterLink :to="`/obra`">
+      <div class="card">
+        <div class="card-body" style="text-align: center">
+         <i class="bi bi-coin"></i>
+          <P></P>
+          <a typeof="/obra">Orçamento</a>
+        </div>
+      </div>
+    </RouterLink>
+    <RouterLink :to="`/obra`">
+      <div class="card">
+        <div class="card-body" style="text-align: center">
+         <i class="bi bi-coin"></i>
+          <P></P>
+          <a typeof="/obra">Clientes</a>
+        </div>
+      </div>
+    </RouterLink>
+    
   </div>
-</div>
-
 </template>
