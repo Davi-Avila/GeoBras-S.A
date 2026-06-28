@@ -1,37 +1,82 @@
 <script setup lang="ts">
-import geobras_remove from '@/img/geobras_remove.png';
+import geobras_remove from "@/img/geobras_remove.png";
+import {ref} from 'vue';
+
+const isDark = ref(false)
+
+function toggleTheme() {
+  isDark.value = !isDark.value
+  document.body.classList.toggle('dark')
+}
 </script>
 <template>
-    <nav style="background-color: #0047AB; ; display: flex;color: white; flex-direction: row; align-items: center; padding: 0.5rem 1rem; height: 30%;">
-      
+  <nav class="navbar" style="background-color: #0047ab;padding: 0.5% 1%;height: 30%; ">
+ <div class="container-fluid py-1 px-3">
+  <div class="img_botao">
+  <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menuNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <RouterLink to="/">
+      <img :src="geobras_remove" alt="Logo" class="logo" />
+    </RouterLink>
+</div>
+    <div class="collapse navbar-collapse" id="menuNavbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/">Home</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/obra">Obra</RouterLink>
+          </li>
+        </ul>
+      </div>
+   
+     <button class="btn ms-auto" style="color: white;" @click="toggleTheme">
+      <i :class="isDark ? 'bi bi-sun-fill' : 'bi bi-moon-fill'"></i>
+    </button>
+  
+  <div class="texto" margin-left: auto;>
     
-
-      <RouterLink to="/" style="color: white; text-decoration: none; font-size: 1.5rem; font-weight: bold;">
-        
-        <img :src="geobras_remove" alt="Logo" class="logo">
-      </RouterLink>
-
-
-            <RouterLink to="/" style="color: white; text-decoration: none; font-size: 1.2rem; margin-left: 1rem;">
-              <button typeof="/">home </button>
-              
-            </RouterLink>
-     
-        <i class="bi bi-list" style="font-size: 250%; margin-left: auto;" @click=""/>
-
-
-    
-
+      <input type="text" style="border-radius: 5cap; " placeholder="Search...">
+   <i class="bi bi-search"></i>
+  </div>
+    </div>
   </nav>
 </template>
-<style >
+<style>
+body.dark {
+  background-color: #1a1a1a !important;
+  color: white !important;
+}
+
+body.dark .card {
+  background-color: #2d2d2d !important;
+  color: white !important;
+  border-color: #444 !important;
+}
+
+body.dark .navbar {
+  background-color: #111 !important;
+}
+
+body.dark .cards-wrapper {
+  background-color: #1a1a1a !important;
+}
+
+body.dark a {
+  color: #aaa !important;
+}
 li {
   list-style: none;
   text-decoration: none;
-
 }
-.logo{
-   width: 20%;  
-  height: auto; 
+.logo {
+  width: 20%;
+  height: auto;
 }
 </style>

@@ -2,9 +2,9 @@
 defineProps(["titulo", "icone"]);
 </script>
 <template>
-  <div class="card-group" style="gap: 1rem;">
+  <div class="card-group" style="gap: 20rem;">
     <RouterLink :to="`/obra`">
-      <div class="card  ">
+      <div class="card" style=" width: 300%;">
         <div class="card-body" style="text-align: center">
           <i class="bi bi-buildings"></i>
           <P></P>
@@ -13,7 +13,7 @@ defineProps(["titulo", "icone"]);
       </div>
     </RouterLink>
     <RouterLink :to="`/obra`">
-      <div class="card">
+     <div class="card" style=" width: 300%;">
         <div class="card-body" style="text-align: center">
          <i class="bi bi-coin"></i>
           <P></P>
@@ -22,8 +22,8 @@ defineProps(["titulo", "icone"]);
       </div>
     </RouterLink>
     <RouterLink :to="`/obra`">
-      <div class="card">
-        <div class="card-body" style="text-align: center">
+      <div class="card" style=" width: 300%;">
+        <div class="card-body" style="text-align: center; height: 30%;">
          <i class="bi bi-coin"></i>
           <P></P>
           <a typeof="/obra">Clientes</a>

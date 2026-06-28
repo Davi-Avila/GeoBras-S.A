@@ -13,6 +13,7 @@ const obra = ref ([] as Obra[])
 </script>
 
 <template>
+    
     <div class="container ">
         <CardObra titulo="obra"/>
         
