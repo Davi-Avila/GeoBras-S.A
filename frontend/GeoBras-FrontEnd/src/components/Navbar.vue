@@ -28,10 +28,13 @@ function toggleTheme() {
     <div class="collapse navbar-collapse" id="menuNavbar">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/">Home</RouterLink>
+            <RouterLink class="nav-link" to="/obra">Obra</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/obra">Obra</RouterLink>
+            <RouterLink class="nav-link" to="/orcamento">Orçamento</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/clientes">Clientes</RouterLink>
           </li>
         </ul>
       </div>
@@ -42,7 +45,8 @@ function toggleTheme() {
   
   <div class="texto" margin-left: auto;>
     
-      <input type="text" style="border-radius: 5cap; " placeholder="Search...">
+      <input type="text" placeholder="Search..." 
+      style="border-radius: 5cap; background-color:aliceblue ;border: none;">
    <i class="bi bi-search"></i>
   </div>
     </div>

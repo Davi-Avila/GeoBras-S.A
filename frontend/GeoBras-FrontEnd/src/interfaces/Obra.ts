@@ -1,7 +1,7 @@
 import type { S } from "vue-router/dist/options-_KKPn1xZ.mjs"
 
 export default interface Obra{ 
-    id: number
+    idObra: number
     nomeObra: String
     endereco: String
     dataInicio: Date
