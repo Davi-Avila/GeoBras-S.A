@@ -20,6 +20,7 @@ public class OrcamentoService {
 
     private OrcamentoResponseDTO toResponseDTO(Orcamento orcamento){
         return new OrcamentoResponseDTO(
+                orcamento.getIdOrcamento(),
                 orcamento.getDeslocamento(),
                 orcamento.getMaoDeObra(),
                 orcamento.getServico(),
@@ -46,14 +47,14 @@ public class OrcamentoService {
         return repository.findAll().stream().map(this::toResponseDTO).toList();
     }
 
-    public OrcamentoResponseDTO buscarPorId(Long id){
-        Orcamento orcamento = repository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
+    public OrcamentoResponseDTO buscarPorId(Long idOrcamento){
+        Orcamento orcamento = repository.findById(idOrcamento).orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
 
         return toResponseDTO(orcamento);
     }
 
-    public OrcamentoResponseDTO atualizar(Long id, OrcamentoRequestDTO dto){
-        Orcamento orcamento = repository.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
+    public OrcamentoResponseDTO atualizar(Long idOrcamento, OrcamentoRequestDTO dto){
+        Orcamento orcamento = repository.findById(idOrcamento).orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
 
         orcamento.setDeslocamento(dto.deslocamento());
         orcamento.setMaoDeObra(dto.maoDeObra());
@@ -66,8 +67,8 @@ public class OrcamentoService {
 
         return toResponseDTO(atualizado);
     }
-    public void deletar(Long id){
-        Orcamento orcamento = repository.findById(id).orElseThrow(() ->new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
+    public void deletar(Long idOrcamento){
+        Orcamento orcamento = repository.findById(idOrcamento).orElseThrow(() ->new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
         
         repository.delete(orcamento);
     }

@@ -3,6 +3,8 @@ package com.example.geobras.dto;
 import java.time.LocalDate;
 
 public record ObraResponseDTO(
+        Long idObra,
+
         String nomeObra,
 
         String endereco,

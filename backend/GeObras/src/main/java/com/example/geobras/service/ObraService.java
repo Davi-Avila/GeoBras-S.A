@@ -83,6 +83,7 @@ public class ObraService {
 
     private ObraResponseDTO toResponseDTO(Obra obra){
         return new ObraResponseDTO(
+                obra.getIdObra(),
                 obra.getNomeObra(),
                 obra.getEndereco(),
                 obra.getDataInicio(),

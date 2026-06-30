@@ -76,7 +76,7 @@ public class MaterialService {
             material.getNomeMaterial(),
             material.getValorMaterial(),
             material.getQuantidade(),
-            material.getOrcamento().getId()
+            material.getOrcamento().getIdOrcamento()
         );
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 public class Orcamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idOrcamento;
 
     private Double deslocamento;
     private Double maoDeObra;

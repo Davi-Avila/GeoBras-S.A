@@ -70,6 +70,7 @@ public class ClienteService {
 
     private ClienteResponseDTO toResponseDTO(Cliente cliente){
         return new ClienteResponseDTO(
+                cliente.getIdCliente(),
                 cliente.getNomeCliente(),
                 cliente.getEmail(),
                 cliente.getPais(),
