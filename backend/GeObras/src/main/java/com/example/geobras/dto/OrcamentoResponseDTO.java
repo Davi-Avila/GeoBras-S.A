@@ -6,6 +6,7 @@ public record OrcamentoResponseDTO(
         Double maoDeObra,
         String servico,
         Double aluguelDeEquipamento,
+        Double somaMateriais,
         Double imposto,
         Double orcamentoTotal
 ) {

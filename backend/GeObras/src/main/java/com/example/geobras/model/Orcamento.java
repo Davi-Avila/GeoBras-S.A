@@ -19,11 +19,10 @@ public class Orcamento {
     private Double maoDeObra;
     private String servico;
     private Double aluguelDeEquipamento;
+    private Double somaMateriais;
     private Double imposto;
     private Double orcamentoTotal;
 
-    @OneToMany(mappedBy = "orcamento")
-    private List<Material> materiais = new ArrayList<>();
 
     public Orcamento(){}
 }

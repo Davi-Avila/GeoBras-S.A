@@ -20,6 +20,10 @@ public record OrcamentoRequestDTO(
         @NotNull(message = "Insira o valor do aluguel do equipamento")
         Double aluguelDeEquipamento,
 
+        @Min(value = 0, message = "Insira uma soma de materiais maior que 0")
+        @NotNull(message = "Insira a soma dos materiais")
+        Double somaMateriais,
+
         @Min(value = 0, message = "Insira um imposto válido")
         @NotNull(message = "Insira a porcentagem do imposto")
         Double imposto

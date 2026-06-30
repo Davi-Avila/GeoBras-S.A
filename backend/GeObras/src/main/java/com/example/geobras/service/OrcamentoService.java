@@ -25,8 +25,9 @@ public class OrcamentoService {
                 orcamento.getMaoDeObra(),
                 orcamento.getServico(),
                 orcamento.getAluguelDeEquipamento(),
+                orcamento.getSomaMateriais(),
                 orcamento.getImposto(),
-                calcularOrcamentoTotal(orcamento.getImposto(),orcamento.getAluguelDeEquipamento(), orcamento.getDeslocamento(), orcamento.getMaoDeObra())
+                calcularOrcamentoTotal(orcamento.getImposto(),orcamento.getAluguelDeEquipamento(), orcamento.getDeslocamento(), orcamento.getMaoDeObra(), orcamento.getSomaMateriais())
         );
     }
 
@@ -36,8 +37,9 @@ public class OrcamentoService {
         orcamento.setMaoDeObra(dto.maoDeObra());
         orcamento.setServico(dto.servico());
         orcamento.setAluguelDeEquipamento(dto.aluguelDeEquipamento());
+        orcamento.setSomaMateriais(dto.somaMateriais());
         orcamento.setImposto(dto.imposto());
-        orcamento.setOrcamentoTotal(calcularOrcamentoTotal(dto.imposto(),dto.aluguelDeEquipamento(), dto.deslocamento(), dto.maoDeObra()));
+        orcamento.setOrcamentoTotal(calcularOrcamentoTotal(dto.imposto(),dto.aluguelDeEquipamento(), dto.deslocamento(), dto.maoDeObra(), dto.somaMateriais()));
 
         Orcamento salvo = repository.save(orcamento);
         return toResponseDTO(salvo);
@@ -60,8 +62,9 @@ public class OrcamentoService {
         orcamento.setMaoDeObra(dto.maoDeObra());
         orcamento.setServico(dto.servico());
         orcamento.setAluguelDeEquipamento(dto.aluguelDeEquipamento());
+        orcamento.setSomaMateriais(dto.somaMateriais());
         orcamento.setImposto(dto.imposto());
-        orcamento.setOrcamentoTotal(calcularOrcamentoTotal(dto.imposto(), dto.aluguelDeEquipamento(), dto.deslocamento(), dto.maoDeObra()));
+        orcamento.setOrcamentoTotal(calcularOrcamentoTotal(dto.imposto(), dto.aluguelDeEquipamento(), dto.deslocamento(), dto.maoDeObra(), dto.somaMateriais()));
 
         Orcamento  atualizado = repository.save(orcamento);
 
@@ -72,9 +75,9 @@ public class OrcamentoService {
         
         repository.delete(orcamento);
     }
-    private  Double calcularOrcamentoTotal(Double imposto, Double aluguel, Double deslocamento, Double maoDeObra){
+    private  Double calcularOrcamentoTotal(Double imposto, Double aluguel, Double deslocamento, Double maoDeObra, Double somaMateriais){
         imposto *= 0.01;
-        Double valor = (maoDeObra + aluguel) + (deslocamento * 1.50);
+        Double valor = (maoDeObra + aluguel + somaMateriais) + (deslocamento * 1.50);
         valor += (valor * imposto);
         return valor;
     }
