@@ -28,6 +28,10 @@ export async function getClienteById(idCliente: string | number) {
   return response.data
 }
 
+export async function putCliente(idCliente: number, cliente: Cliente) {
+  await api.put(`/clientes/${idCliente}`, cliente)
+}
+
 
 //Material
 export async function getMateriais() {
@@ -46,6 +50,10 @@ export async function deleteMaterial(idMaterial: number) {
 export async function getMaterialById(idMaterial: string | number) {
   const response = await api.get(`/materiais/${idMaterial}`)
   return response.data
+}
+
+export async function putMaterial(idMaterial: number, material: Material) {
+  await api.put(`/materiais/${idMaterial}`, material)
 }
 
 
@@ -68,6 +76,10 @@ export async function getObraById(idObra: string | number) {
   return response.data
 }
 
+export async function putObra(idObra: number, obra: Obra) {
+  await api.put(`/obras/${idObra}`, obra)
+}
+
 
 //Orcamento
 export async function getOrcamentos() {
@@ -80,10 +92,14 @@ export async function postOrcamento(orcamento: Orcamento) {
 }
 
 export async function deleteOrcamento(idOrcamento: number) {
-  await api.delete(`/clientes/${idOrcamento}`)
+  await api.delete(`/orcamentos/${idOrcamento}`)
 }
 
 export async function getOrcamentoById(idOrcamento: string | number) {
   const response = await api.get(`/orcamentos/${idOrcamento}`)
   return response.data
+}
+
+export async function putOrcamento(idOrcamento: number, orcamento: Orcamento) {
+  await api.put(`/orcamentos/${idOrcamento}`, orcamento)
 }
