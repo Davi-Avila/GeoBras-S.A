@@ -75,6 +75,10 @@ body.dark .cards-wrapper {
 body.dark a {
   color: #aaa !important;
 }
+
+body.dark i {
+  color: #aaa !important;
+}
 li {
   list-style: none;
   text-decoration: none;
