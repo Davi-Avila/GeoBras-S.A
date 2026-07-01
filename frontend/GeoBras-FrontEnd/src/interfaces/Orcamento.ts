@@ -1,9 +1,11 @@
-export default interface Orcamento{
+export interface Orcamento{
     idOrcamento: number
+    nome: string
     deslocamento: number
     maoDeObra: number
-    servico: String
+    servico: string
     aluguelDeEquipamento: number
+    somaMateriais: number
     imposto: number
     orcamentoTotal: number
 }

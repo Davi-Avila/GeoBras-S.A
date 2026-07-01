@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import http from '@/http'
-import type Orcamento from '@/interfaces/Orcamento'
 import CardOrcamento from '@/components/CardOrcamento.vue'
 import { RouterLink } from 'vue-router'
 import { getOrcamentos } from '@/service/api'
+import type { Orcamento } from '@/interfaces/Orcamento'
 
 const orcamentos = ref([] as Orcamento[])
 const id = ref<number | null>(null)

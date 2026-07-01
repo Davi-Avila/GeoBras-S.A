@@ -1,75 +1,139 @@
 <script setup lang="ts">
-import type Material from '@/interfaces/Material';
+import type { Orcamento } from '@/interfaces/Orcamento';
+import { postOrcamento } from '@/service/api';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-const router = useRouter ()
+const router = useRouter()
+const form = ref<Orcamento>({
+  idOrcamento: 0,
+  nome: "",
+  deslocamento: 0,
+  maoDeObra: 0,
+  servico: "",
+  aluguelDeEquipamento: 0,
+  somaMateriais: 0,
+  imposto: 0,
+  orcamentoTotal: 0
+})
 
-const materiais = ref<Material>({} as Material)
+async function salvar(): Promise<void> {
+
+  await postOrcamento({
+    nome: form.value.nome,
+    deslocamento: form.value.deslocamento,
+    maoDeObra: form.value.maoDeObra,
+    servico: form.value.servico,
+    aluguelDeEquipamento: form.value.aluguelDeEquipamento,
+    somaMateriais: form.value.somaMateriais,
+    imposto: form.value.imposto
+  })
+
+  router.push("/orcamentos")
+  
+}
+
 
 </script>
 <template>
-  <form>
-    <div class="mb-3">
-      <label class="form-label">$ Nome $ </label>
-      <input type="text" class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">$ deslocamento $</label>
-      <input type="number" class="form-control" />
-    </div>
-
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Material
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Materiais</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div class="container mt-4">
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h4 class="mb-0">Cadastro de Orçamento</h4>
       </div>
-      <div class="modal-body">
-        <div class="row">
-        <div class="col-5">
-        <input class="form-control" type="text" v-model="materiais.nomeMaterial">
-    </div>
-    <div class="col-3">
-        <input class="form-control"  step="" type="number" v-model="materiais.quantidade">
-    </div>
-    <div class="col-3">
-        <input class="form-control" step="0.1" type="number" v-model="materiais.valorMaterial">
-    </div>
-        <button class="btn btn-primary col-1">+</button>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
+
+      <div class="card-body">
+        <form @submit.prevent="salvar">
+
+          <!-- Nome -->
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input id="nome" v-model="form.nome" type="text" class="form-control" placeholder="Digite o nome do orçamento" />
+          </div>
+
+          <!-- Valores -->
+          <div class="row">
+
+            <div class="col-md-6 mb-3">
+              <label for="deslocamento" class="form-label">
+                Deslocamento (R$)
+              </label>
+              <input id="deslocamento" v-model.number="form.deslocamento" type="number" class="form-control" placeholder="0,00" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="maoDeObra" class="form-label">
+                Mão de obra (R$)
+              </label>
+              <input id="maoDeObra" v-model.number="form.maoDeObra" type="number" class="form-control" placeholder="0,00" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="servico" class="form-label">
+                Serviço
+              </label>
+              <input id="servico" v-model="form.servico" type="text" class="form-control" placeholder="Tipo de Serviço" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="aluguelDeEquipamento" class="form-label">
+                Aluguel de Equipamento (R$)
+              </label>
+              <input id="aluguelDeEquipamento" v-model.number="form.aluguelDeEquipamento" type="number" class="form-control" placeholder="0,00" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="somaMateriais" class="form-label">
+                Custo de Materiais (R$)
+              </label>
+              <input id="somaMateriais" v-model.number="form.somaMateriais" type="number" class="form-control" placeholder="0,00" />
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label for="imposto" class="form-label">
+                Imposto (R$)
+              </label>
+              <input id="imposto" v-model.number="form.imposto" type="number" class="form-control" placeholder="0,00" />
+            </div>
+
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary px-4">
+              Cadastrar
+            </button>
+          </div>
+
+        </form>
       </div>
     </div>
   </div>
-</div>
-
-    <div class="mb-3">
-      <label class="form-label">$ mão de obra $</label>
-      <input type="number" class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">$ serviço $</label>
-      <input type="number" class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">$ aluguel equipamento $</label>
-      <input type="number" class="form-control" />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">$ Imposto $</label>
-      <input type="number" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-  </form>
 </template>
-<style></style>
+<style>
+.form-label {
+  font-weight: 600;
+  color: #dee1e4;
+}
+
+.card-header {
+  background-color: #1e6ee6;
+  color: white;
+}
+
+.card-header h4 {
+  margin: 0;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+.form-control {
+  border-radius: 8px;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 .2rem rgba(13,110,253,.25);
+}
+</style>

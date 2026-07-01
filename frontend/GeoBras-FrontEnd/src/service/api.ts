@@ -1,7 +1,7 @@
+
 import type Cliente from '@/interfaces/Cliente'
-import type Material from '@/interfaces/Material'
 import type Obra from '@/interfaces/Obra'
-import type Orcamento from '@/interfaces/Orcamento'
+import type { Orcamento } from '@/interfaces/Orcamento'
 import axios from 'axios'
 
 const api = axios.create({
@@ -30,30 +30,6 @@ export async function getClienteById(idCliente: string | number) {
 
 export async function putCliente(idCliente: number, cliente: Cliente) {
   await api.put(`/clientes/${idCliente}`, cliente)
-}
-
-
-//Material
-export async function getMateriais() {
-  const response = await api.get('/materiais')
-  return response.data
-}
-
-export async function postMaterial(material: Material) {
-  await api.post<Material>('/materiais', material)
-}
-
-export async function deleteMaterial(idMaterial: number) {
-  await api.delete(`/materiais/${idMaterial}`)
-}
-
-export async function getMaterialById(idMaterial: string | number) {
-  const response = await api.get(`/materiais/${idMaterial}`)
-  return response.data
-}
-
-export async function putMaterial(idMaterial: number, material: Material) {
-  await api.put(`/materiais/${idMaterial}`, material)
 }
 
 

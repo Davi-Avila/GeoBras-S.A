@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type Orcamento  from '@/interfaces/Orcamento';
+import type { Orcamento } from '@/interfaces/Orcamento';
 import { type PropType } from 'vue';
 defineProps({
     orcamento: {
