@@ -28,7 +28,7 @@ onMounted(async () => {
         <h1 >Orçamento</h1>
     </div>
       <div style="display: flex;justify-content: end;margin-right: 20px;width: 100%;position: absolute;">
-          <RouterLink to="/orcamento/novo" class="btn btn" style="background-color: #302c9b;">
+          <RouterLink to="/orcamento/novo" class="btn btn-primary" style="background-color: #302c9b;">
         + Novo Orçamento
         </RouterLink>
       </div>

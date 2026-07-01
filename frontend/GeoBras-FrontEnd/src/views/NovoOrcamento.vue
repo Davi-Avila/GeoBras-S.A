@@ -5,6 +5,9 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
+const mensagem = ref("")
+
+
 const form = ref<Orcamento>({
   idOrcamento: 0,
   nome: "",
@@ -18,19 +21,28 @@ const form = ref<Orcamento>({
 })
 
 async function salvar(): Promise<void> {
+  try {
+    await postOrcamento({
+      nome: form.value.nome,
+      deslocamento: form.value.deslocamento,
+      maoDeObra: form.value.maoDeObra,
+      servico: form.value.servico,
+      aluguelDeEquipamento: form.value.aluguelDeEquipamento,
+      somaMateriais: form.value.somaMateriais,
+      imposto: form.value.imposto,
+      idOrcamento: 0,
+      orcamentoTotal: 0
+    })
 
-  await postOrcamento({
-    nome: form.value.nome,
-    deslocamento: form.value.deslocamento,
-    maoDeObra: form.value.maoDeObra,
-    servico: form.value.servico,
-    aluguelDeEquipamento: form.value.aluguelDeEquipamento,
-    somaMateriais: form.value.somaMateriais,
-    imposto: form.value.imposto
-  })
+    mensagem.value = "Orçamento cadastrado com sucesso!"
+    setTimeout(() => {
+      router.push("/orcamento")
+    }, 1500)
 
-  router.push("/orcamentos")
-  
+  } catch {
+    mensagem.value = "Erro ao cadastrar orçamento."
+  }
+
 }
 
 
@@ -38,6 +50,10 @@ async function salvar(): Promise<void> {
 <template>
   <div class="container mt-4">
     <div class="card shadow-sm">
+      <div v-if="mensagem" class="alert alert-sucess" role="alert">
+        {{ mensagem }}
+      </div>
+
       <div class="card-header">
         <h4 class="mb-0">Cadastro de Orçamento</h4>
       </div>
@@ -48,7 +64,8 @@ async function salvar(): Promise<void> {
           <!-- Nome -->
           <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
-            <input id="nome" v-model="form.nome" type="text" class="form-control" placeholder="Digite o nome do orçamento" />
+            <input id="nome" v-model="form.nome" type="text" class="form-control"
+              placeholder="Digite o nome do orçamento" required/>
           </div>
 
           <!-- Valores -->
@@ -56,44 +73,49 @@ async function salvar(): Promise<void> {
 
             <div class="col-md-6 mb-3">
               <label for="deslocamento" class="form-label">
-                Deslocamento (R$)
+                Deslocamento (KM)
               </label>
-              <input id="deslocamento" v-model.number="form.deslocamento" type="number" class="form-control" placeholder="0,00" />
+              <input id="deslocamento" v-model.number="form.deslocamento" type="number" class="form-control"
+                placeholder="0,00" required/>
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="maoDeObra" class="form-label">
                 Mão de obra (R$)
               </label>
-              <input id="maoDeObra" v-model.number="form.maoDeObra" type="number" class="form-control" placeholder="0,00" />
+              <input id="maoDeObra" v-model.number="form.maoDeObra" type="number" class="form-control"
+                placeholder="0,00" required/>
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="servico" class="form-label">
                 Serviço
               </label>
-              <input id="servico" v-model="form.servico" type="text" class="form-control" placeholder="Tipo de Serviço" />
+              <input id="servico" v-model="form.servico" type="text" class="form-control"
+                placeholder="Tipo de Serviço" required/>
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="aluguelDeEquipamento" class="form-label">
                 Aluguel de Equipamento (R$)
               </label>
-              <input id="aluguelDeEquipamento" v-model.number="form.aluguelDeEquipamento" type="number" class="form-control" placeholder="0,00" />
+              <input id="aluguelDeEquipamento" v-model.number="form.aluguelDeEquipamento" type="number"
+                class="form-control" placeholder="0,00" required/>
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="somaMateriais" class="form-label">
                 Custo de Materiais (R$)
               </label>
-              <input id="somaMateriais" v-model.number="form.somaMateriais" type="number" class="form-control" placeholder="0,00" />
+              <input id="somaMateriais" v-model.number="form.somaMateriais" type="number" class="form-control"
+                placeholder="0,00" required/>
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="imposto" class="form-label">
-                Imposto (R$)
+                Imposto (%)
               </label>
-              <input id="imposto" v-model.number="form.imposto" type="number" class="form-control" placeholder="0,00" />
+              <input id="imposto" v-model.number="form.imposto" type="number" class="form-control" placeholder="0,00" required/>
             </div>
 
           </div>
@@ -134,6 +156,6 @@ async function salvar(): Promise<void> {
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 .2rem rgba(13,110,253,.25);
+  box-shadow: 0 0 0 .2rem rgba(13, 110, 253, .25);
 }
 </style>
