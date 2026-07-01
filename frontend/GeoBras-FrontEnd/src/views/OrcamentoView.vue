@@ -11,7 +11,7 @@ const id = ref<number | null>(null)
 const carregando = ref(true)
 
 async function pesquisarOrcamento() {
-    const response = await http.get(`/orcamento/${id}`)
+    const response = await http.get(`/orcamento/${id.value}`)
     orcamentos.value = [response.data]
     carregando.value = false
 }
