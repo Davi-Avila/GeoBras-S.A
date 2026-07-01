@@ -17,7 +17,7 @@ const form = ref<Orcamento>({} as Orcamento)
 async function salvar(): Promise<void> {
   try {
     await postOrcamento({
-      nome: form.value.nome,
+      nomeOrcamento: form.value.nomeOrcamento,
       deslocamento: form.value.deslocamento,
       maoDeObra: form.value.maoDeObra,
       servico: form.value.servico,
@@ -29,7 +29,7 @@ async function salvar(): Promise<void> {
     })
 
     toast.show()
-    setTimeout(() => { router.push("/orcamento") }, 3000)
+    setTimeout(() => { router.push("/orcamento") }, 2500)
 
   } catch {
 
@@ -41,7 +41,7 @@ async function salvar(): Promise<void> {
 </script>
 <template>
   <div class="container">
-    <div class="card shadow-sm mt-5">
+    <div class="card mt-5">
 
       <div class="card-header">
         <h4 class="mb-0">Cadastro de Orçamento</h4>
@@ -53,7 +53,7 @@ async function salvar(): Promise<void> {
           <!-- Nome -->
           <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
-            <input id="nome" v-model="form.nome" type="text" class="form-control"
+            <input id="nome" v-model="form.nomeOrcamento" type="text" class="form-control"
               placeholder="Digite o nome do orçamento" required />
           </div>
 
