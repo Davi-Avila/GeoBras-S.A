@@ -1,7 +1,7 @@
-import Cliente from '@/interfaces/Cliente'
-import Material from '@/interfaces/Material'
-import Obra from '@/interfaces/Obra'
-import Orcamento from '@/interfaces/Orcamento'
+import type Cliente from '@/interfaces/Cliente'
+import type Material from '@/interfaces/Material'
+import type Obra from '@/interfaces/Obra'
+import type Orcamento from '@/interfaces/Orcamento'
 import axios from 'axios'
 
 const api = axios.create({
@@ -83,23 +83,23 @@ export async function putObra(idObra: number, obra: Obra) {
 
 //Orcamento
 export async function getOrcamentos() {
-  const response = await api.get('/orcamentos')
+  const response = await api.get('/orcamento')
   return response.data
 }
 
 export async function postOrcamento(orcamento: Orcamento) {
-  await api.post<Orcamento>('/orcamentos', orcamento)
+  await api.post<Orcamento>('/orcamento', orcamento)
 }
 
 export async function deleteOrcamento(idOrcamento: number) {
-  await api.delete(`/orcamentos/${idOrcamento}`)
+  await api.delete(`/orcamento/${idOrcamento}`)
 }
 
 export async function getOrcamentoById(idOrcamento: string | number) {
-  const response = await api.get(`/orcamentos/${idOrcamento}`)
+  const response = await api.get(`/orcamento/${idOrcamento}`)
   return response.data
 }
 
 export async function putOrcamento(idOrcamento: number, orcamento: Orcamento) {
-  await api.put(`/orcamentos/${idOrcamento}`, orcamento)
+  await api.put(`/orcamento/${idOrcamento}`, orcamento)
 }
