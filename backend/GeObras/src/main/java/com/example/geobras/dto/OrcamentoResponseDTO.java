@@ -1,7 +1,8 @@
 package com.example.geobras.dto;
 
-public record OrcamentoResponseDTO(
+public record   OrcamentoResponseDTO(
         Long idOrcamento,
+        String nomeOrcamento,
         Double deslocamento,
         Double maoDeObra,
         String servico,
