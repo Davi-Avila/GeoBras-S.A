@@ -21,6 +21,7 @@ public class OrcamentoService {
     private OrcamentoResponseDTO toResponseDTO(Orcamento orcamento){
         return new OrcamentoResponseDTO(
                 orcamento.getIdOrcamento(),
+                orcamento.getNomeOrcamento(),
                 orcamento.getDeslocamento(),
                 orcamento.getMaoDeObra(),
                 orcamento.getServico(),
@@ -33,6 +34,7 @@ public class OrcamentoService {
 
     public OrcamentoResponseDTO salvar(OrcamentoRequestDTO dto){
         Orcamento orcamento = new Orcamento();
+        orcamento.setNomeOrcamento(dto.nomeOrcamento());
         orcamento.setDeslocamento(dto.deslocamento());
         orcamento.setMaoDeObra(dto.maoDeObra());
         orcamento.setServico(dto.servico());
@@ -58,6 +60,7 @@ public class OrcamentoService {
     public OrcamentoResponseDTO atualizar(Long idOrcamento, OrcamentoRequestDTO dto){
         Orcamento orcamento = repository.findById(idOrcamento).orElseThrow(() -> new RecursoNaoEncontradoException("Orçamento não encontrado !!"));
 
+        orcamento.setNomeOrcamento(dto.nomeOrcamento());
         orcamento.setDeslocamento(dto.deslocamento());
         orcamento.setMaoDeObra(dto.maoDeObra());
         orcamento.setServico(dto.servico());

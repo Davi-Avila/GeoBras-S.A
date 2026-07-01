@@ -13,17 +13,21 @@ defineProps({
     <div style="width: 100% ;">
 
         <div class="card h-80 shadow border-0">
-          <div style="width: 100%;height: 250px; font-size: 1.1rem;" >
-            
-            <h6 class="card-title fw-bold " style="margin-bottom: 5px;justify-self: start;">Id - {{orcamento.idOrcamento}}</h6>
+          <div style="width: 100%;height: 200px; font-size: 1.1rem;" >
+            <h6 class="card-title fw-bold " style="margin-bottom: 5px;justify-self: start;">Nome - {{orcamento.nomeOrcamento}}</h6>
             <div style="margin-bottom: 5px;justify-content: start; display: flex;">
             <p class="text small mb-0">
-              <i class="bi bi-person "> Deslocamento - {{ orcamento.deslocamento }}</i>
+              <i class="bi bi-person "> Id - {{ orcamento.idOrcamento }}</i>
             </p>
             </div>
             <div style="margin-bottom: 5px;justify-content: start; display: flex;">
               <p class="text small mb-0">
-              <i class="bi bi-hammer "> Mão de obra - {{ orcamento.maoDeObra }}</i>
+              <i class="bi bi-truck "> Deslocamento - R${{ orcamento.deslocamento }}</i>
+            </p>
+            </div>
+            <div style="margin-bottom: 5px;justify-content: start; display: flex;">
+              <p class="text small mb-0">
+              <i class="bi bi-hammer "> Mão de obra - R${{ orcamento.maoDeObra }}</i>
             </p>
             </div>
             <div style="margin-bottom: 5px;justify-content: start; display: flex;">
@@ -34,7 +38,7 @@ defineProps({
             
             <div style="margin-bottom: 5px;justify-content: start; display: flex;">
               <p class="text small mb-0">
-              <i class="bi bi-cash "> Imposto  R$ {{ orcamento.imposto }}</i>
+              <i class="bi bi-cash "> Imposto - R${{ orcamento.imposto }}%</i>
             </p>
             </div>
             <div style="margin-bottom: 5px;justify-content: start; display: flex;">
@@ -46,7 +50,7 @@ defineProps({
             
             <div style="margin-bottom: 5px;justify-content: start; display: flex;border-bottom: 1px solid #ccc; padding-bottom: 15px;">
               <p class="text small mb-0">
-              <i class="bi bi-cash "> Aluguel de equipamento  R$ {{ orcamento.aluguelDeEquipamento }}</i>
+              <i class="bi bi-cash "> Aluguel de equipamento - R$ {{ orcamento.aluguelDeEquipamento }}</i>
             </p>
             </div>
             <div style="justify-content: start; display: flex;">

@@ -1,29 +1,23 @@
 <script setup lang="ts">
 import type { Orcamento } from '@/interfaces/Orcamento';
 import { postOrcamento } from '@/service/api';
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { Toast } from "bootstrap"
 
 const router = useRouter()
-const mensagem = ref("")
-
-
-const form = ref<Orcamento>({
-  idOrcamento: 0,
-  nome: "",
-  deslocamento: 0,
-  maoDeObra: 0,
-  servico: "",
-  aluguelDeEquipamento: 0,
-  somaMateriais: 0,
-  imposto: 0,
-  orcamentoTotal: 0
+let toast: any = null
+onMounted(() => {
+  const toastLiveExample = document.getElementById('toast')
+  toast = Toast.getOrCreateInstance(toastLiveExample!)
 })
+
+const form = ref<Orcamento>({} as Orcamento)
 
 async function salvar(): Promise<void> {
   try {
     await postOrcamento({
-      nome: form.value.nome,
+      nomeOrcamento: form.value.nomeOrcamento,
       deslocamento: form.value.deslocamento,
       maoDeObra: form.value.maoDeObra,
       servico: form.value.servico,
@@ -34,11 +28,11 @@ async function salvar(): Promise<void> {
       orcamentoTotal: 0
     })
 
-    mensagem.value = "Orçamento cadastrado com sucesso!"
-    setTimeout(() => {router.push("/orcamento")}, 1500)
+    toast.show()
+    setTimeout(() => { router.push("/orcamento") }, 2500)
 
   } catch {
-    mensagem.value = "Erro ao cadastrar orçamento."
+
   }
 
 }
@@ -47,10 +41,7 @@ async function salvar(): Promise<void> {
 </script>
 <template>
   <div class="container">
-    <div class="card shadow-sm">
-      <div v-if="mensagem" class="alert alert-sucess" role="alert">
-        {{ mensagem }}
-      </div>
+    <div class="card mt-5">
 
       <div class="card-header">
         <h4 class="mb-0">Cadastro de Orçamento</h4>
@@ -62,8 +53,8 @@ async function salvar(): Promise<void> {
           <!-- Nome -->
           <div class="mb-3">
             <label for="nome" class="form-label">Nome</label>
-            <input id="nome" v-model="form.nome" type="text" class="form-control"
-              placeholder="Digite o nome do orçamento" required/>
+            <input id="nome" v-model="form.nomeOrcamento" type="text" class="form-control"
+              placeholder="Digite o nome do orçamento" required />
           </div>
 
           <!-- Valores -->
@@ -74,7 +65,7 @@ async function salvar(): Promise<void> {
                 Deslocamento (KM)
               </label>
               <input id="deslocamento" v-model.number="form.deslocamento" type="number" class="form-control"
-                placeholder="0,00" required min="0"/>
+                placeholder="0,00" required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
@@ -82,15 +73,15 @@ async function salvar(): Promise<void> {
                 Mão de obra (R$)
               </label>
               <input id="maoDeObra" v-model.number="form.maoDeObra" type="number" class="form-control"
-                placeholder="0,00" required min="0"/>
+                placeholder="0,00" required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="servico" class="form-label">
                 Serviço
               </label>
-              <input id="servico" v-model="form.servico" type="text" class="form-control"
-                placeholder="Tipo de Serviço" required min="0"/>
+              <input id="servico" v-model="form.servico" type="text" class="form-control" placeholder="Tipo de Serviço"
+                required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
@@ -98,7 +89,7 @@ async function salvar(): Promise<void> {
                 Aluguel de Equipamento (R$)
               </label>
               <input id="aluguelDeEquipamento" v-model.number="form.aluguelDeEquipamento" type="number"
-                class="form-control" placeholder="0,00" required min="0"/>
+                class="form-control" placeholder="0,00" required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
@@ -106,15 +97,15 @@ async function salvar(): Promise<void> {
                 Custo de Materiais (R$)
               </label>
               <input id="somaMateriais" v-model.number="form.somaMateriais" type="number" class="form-control"
-                placeholder="0,00" required min="0"/>
+                placeholder="0,00" required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="imposto" class="form-label">
                 Imposto (%)
               </label>
-              <input id="imposto" v-model.number="form.imposto" type="number" class="form-control" placeholder="0,00" 
-                required min="0"/>
+              <input id="imposto" v-model.number="form.imposto" type="number" class="form-control" placeholder="0,00"
+                required min="0" />
             </div>
 
           </div>
@@ -126,6 +117,19 @@ async function salvar(): Promise<void> {
           </div>
 
         </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header text-bg-success">
+        <strong class="me-auto">Concluído</strong>
+        <small>11 mins ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Orçamento cadastrado com sucesso!
       </div>
     </div>
   </div>
@@ -157,7 +161,8 @@ async function salvar(): Promise<void> {
 .form-control:focus {
   box-shadow: 0 0 0 .2rem rgba(13, 110, 253, .25);
 }
+
 .container {
-    display: block !important;
+  display: block !important;
 }
 </style>

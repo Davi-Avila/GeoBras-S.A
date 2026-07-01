@@ -27,8 +27,8 @@ defineProps(["titulo", "icone"]);
       <RouterLink :to="`/clientes`">
         <div class="card">
           <div class="card-body">
-            <i class="card-title bi bi-coin"></i>
-            <P class="card-text">Materiais</P>
+            <i class="card-title bi bi-person"></i>
+            <P class="card-text">Clientes</P>
           </div>
         </div>
       </RouterLink>

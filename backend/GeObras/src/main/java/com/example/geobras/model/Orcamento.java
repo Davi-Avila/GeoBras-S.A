@@ -15,6 +15,7 @@ public class Orcamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOrcamento;
 
+    private String nomeOrcamento;
     private Double deslocamento;
     private Double maoDeObra;
     private String servico;
