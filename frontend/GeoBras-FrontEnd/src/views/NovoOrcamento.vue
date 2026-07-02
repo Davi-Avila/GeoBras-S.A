@@ -25,7 +25,8 @@ async function salvar(): Promise<void> {
       somaMateriais: form.value.somaMateriais,
       imposto: form.value.imposto,
       idOrcamento: 0,
-      orcamentoTotal: 0
+      orcamentoTotal: 0,
+      idObra: 0
     })
 
     toast.show()
