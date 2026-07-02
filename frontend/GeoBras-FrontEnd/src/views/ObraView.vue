@@ -35,11 +35,11 @@ onMounted(async () => {
 
 <template>
 
-<div style="display: flex;flex-direction: row;width: 100%;margin-top: 20px;">
+<div style="display: flex;flex-direction: row;width: 100%;margin-top: 2%;">
     <div style="display: flex;width: 100%;justify-content: center;">
         <h1 >Obras</h1>
     </div>
-      <div style="display: flex;justify-content: end;margin-right: 20px;width: 100%;position: absolute;">
+      <div style="display: flex;justify-content: end;margin-left: 90%;position: absolute;">
           <RouterLink to="/obra/nova" class="btn btn" style="background-color: #302c9b;">
         + Nova Obra
       </RouterLink>
@@ -54,10 +54,10 @@ onMounted(async () => {
         </div>
     </div>
 
-    <div style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;">
+    <div style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 2%;height: 100%;flex-wrap: wrap;">
       
     </div>
-    <div v-if="obras && obras.length > 0" style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;" class="row ps-4" >
+    <div v-if="obras && obras.length > 0" style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 3%;height: 100%;flex-wrap: wrap;" class="row ps-4" >
         <div v-for="obra in obras" :key="obra.idObra" class="col-12 col-md-4 col-lg-3">
         <CardDaObra :obra="obra"/>
       </div>
