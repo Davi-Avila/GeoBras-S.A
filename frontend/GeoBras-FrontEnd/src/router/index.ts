@@ -2,9 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ObraView from '@/views/ObraView.vue'
 import OrcamentoView from '@/views/OrcamentoView.vue'
-import ClientesView from '@/views/MaterialView.vue'
+import ClientesView from '@/views/ClientesView.vue'
 import NovaObraPage from '@/views/NovaObraPage.vue'
-import MaterialView from '@/views/MaterialView.vue'
 import NovoOrcamento from '@/views/NovoOrcamento.vue'
 import NovoCliente from '@/views/NovoCliente.vue'
 
@@ -25,11 +24,6 @@ const router = createRouter({
       name: 'orcamento',
       path: '/orcamento',
       component: OrcamentoView
-    },
-    {
-      name: 'materiais',
-      path: '/materiais',
-      component: MaterialView
     },
     {
       name: 'novaObra',

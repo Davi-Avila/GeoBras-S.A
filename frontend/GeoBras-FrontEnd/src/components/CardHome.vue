@@ -28,7 +28,7 @@ defineProps(["titulo", "icone"]);
         <div class="card">
           <div class="card-body">
             <i class="card-title bi bi-person"></i>
-            <P class="card-text">Clientes</P>
+            <p class="card-text">Clientes</p>
           </div>
         </div>
       </RouterLink>

@@ -11,9 +11,19 @@ const id = ref<number | null>(null)
 const carregando = ref(true)
 
 async function pesquisarObra() {
-    const response = await http.get(`/obra/${id.value}`)
-    obras.value = [response.data]
+    if(id.value) {
+    try{
+      const response = await http.get(`/obras/${id.value}`)
+      obras.value = [response.data]
+    } catch (error) {
+      console.log('Erro ao buscar orçamento:')
+      obras.value = []
+    }
+  }else {
+    const response = await getObras()
+    obras.value = response
     carregando.value = false
+  }
 }
 
 onMounted(async () => {
@@ -45,10 +55,16 @@ onMounted(async () => {
     </div>
 
     <div style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;">
-      <div v-for="obra in obras" :key="obra.idObra" class="col-12 col-md-4 col-lg-3">
+      
+    </div>
+    <div v-if="obras && obras.length > 0" style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;" class="row ps-4" >
+        <div v-for="obra in obras" :key="obra.idObra" class="col-12 col-md-4 col-lg-3">
         <CardDaObra :obra="obra"/>
       </div>
-    </div>
+      </div>
+      <div v-else style="display: flex; justify-content: center; align-items: center; width: 100%;">
+        <p class="text-dark">Nenhuma obra encontrada.</p>
+      </div>
     
    
 </template>
