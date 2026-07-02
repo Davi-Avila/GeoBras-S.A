@@ -38,7 +38,7 @@ defineProps({
             
             <div style="margin-bottom: 5px;justify-content: start; display: flex;">
               <p class="text small mb-0">
-              <i class="bi bi-cash "> Imposto - R${{ orcamento.imposto }}%</i>
+              <i class="bi bi-cash "> Imposto - {{ orcamento.imposto }}%</i>
             </p>
             </div>
             

@@ -110,10 +110,15 @@ async function salvar(): Promise<void> {
 
           </div>
 
-          <div class="d-flex justify-content-end">
+          <div class="d-flex justify-content-between">
+            <RouterLink to="/orcamento" type="button" class="btn btn-outline-secondary px-4">
+              Cancelar
+            </RouterLink>
+            
             <button type="submit" class="btn btn-primary px-4">
               Cadastrar
             </button>
+            
           </div>
 
         </form>
@@ -141,7 +146,7 @@ async function salvar(): Promise<void> {
 }
 
 .card-header {
-  background-color: #1e6ee6;
+  background-color: 13, 110, 253, .25;
   color: white;
 }
 
