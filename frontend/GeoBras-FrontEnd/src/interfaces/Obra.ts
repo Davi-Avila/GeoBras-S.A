@@ -1,19 +1,24 @@
-
-
-export default interface Obra{ 
+export interface ObraForm {
     idObra: number
-    nomeObra: String
-    endereco: String
-    dataInicio: Date
-    dataFimPrevisto: Date
-    etapa: String
-    orcamentoTotal: Number
-    nomeCliente: String
-    email: String
+    nomeObra: string
+    endereco: string
+    dataInicio: string
+    dataFimPrevisto: string
+    etapa: string
+
     idOrcamento: number
+    idCliente: number
 }
 
-export interface ObraDetalhes extends Obra {
-  nomeOrcamento: string
-  orcamentoTotal: number
+export interface Obra {
+    idObra: number
+    nomeObra: string
+    endereco: string
+    dataInicio: string
+    dataFimPrevisto: string
+    etapa: string
+
+    orcamentoTotal: number
+    nomeCliente: string
+    email: string
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type Obra  from '@/interfaces/Obra';
+import type { Obra } from '@/interfaces/Obra';
 import { type PropType } from 'vue';
 defineProps({
     obra: {
@@ -55,6 +55,12 @@ defineProps({
             <div style="margin-bottom: 5px;justify-content: start; display: flex;">
             <p class="text small mb-0">
               <i class="bi bi-at "> Email - {{ obra.email }}</i>
+            </p>
+            </div>
+
+            <div style="margin-bottom: 5px;justify-content: start; display: flex;">
+            <p class="text small mb-0">
+              <i class="bi bi-cash "> Orçamento total - R${{ obra.orcamentoTotal }}</i>
             </p>
             </div>
             

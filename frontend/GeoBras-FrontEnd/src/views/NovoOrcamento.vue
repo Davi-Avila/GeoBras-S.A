@@ -7,6 +7,7 @@ import { Toast } from "bootstrap"
 
 const router = useRouter()
 let toast: any = null
+
 onMounted(() => {
   const toastLiveExample = document.getElementById('toast')
   toast = Toast.getOrCreateInstance(toastLiveExample!)
@@ -52,8 +53,8 @@ async function salvar(): Promise<void> {
 
           <!-- Nome -->
           <div class="mb-3">
-            <label for="nomeOrcamento" class="form-label">Nome</label>
-            <input id="nomeOrcamento" v-model="form.nomeOrcamento" type="text" class="form-control bg-light text-dark"
+            <label for="nomeOrcamento" class="form-label ">Nome</label>
+            <input id="nomeOrcamento" v-model="form.nomeOrcamento" type="text" class="form-control form-control-light"
               placeholder="Digite o nome do orçamento" required />
           </div>
 
@@ -64,24 +65,24 @@ async function salvar(): Promise<void> {
               <label for="deslocamento" class="form-label">
                 Deslocamento (KM)
               </label>
-              <input id="deslocamento" v-model.number="form.deslocamento" type="number" class="form-control bg-light text-dark"
-                placeholder="0,00" required min="0" />
+              <input id="deslocamento" v-model.number="form.deslocamento" type="number"
+                class="form-control form-control-light" placeholder="0,00" required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="maoDeObra" class="form-label">
                 Mão de obra (R$)
               </label>
-              <input id="maoDeObra" v-model.number="form.maoDeObra" type="number" class="form-control bg-light text-dark"
-                placeholder="0,00" required min="0" />
+              <input id="maoDeObra" v-model.number="form.maoDeObra" type="number"
+                class="form-control form-control-light" placeholder="0,00" required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="servico" class="form-label">
                 Serviço
               </label>
-              <input id="servico" v-model="form.servico" type="text" class="form-control bg-light text-dark"
-               placeholder="Tipo de Serviço" required min="0" />
+              <input id="servico" v-model="form.servico" type="text" class="form-control form-control-light"
+                placeholder="Tipo de Serviço" required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
@@ -89,36 +90,36 @@ async function salvar(): Promise<void> {
                 Aluguel de Equipamento (R$)
               </label>
               <input id="aluguelDeEquipamento" v-model.number="form.aluguelDeEquipamento" type="number"
-                class="form-control bg-light text-dark" placeholder="0,00" required min="0" />
+                class="form-control form-control-light" placeholder="0,00" required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="somaMateriais" class="form-label">
                 Custo de Materiais (R$)
               </label>
-              <input id="somaMateriais" v-model.number="form.somaMateriais" type="number" class="form-control bg-light text-dark"
-                placeholder="0,00" required min="0" />
+              <input id="somaMateriais" v-model.number="form.somaMateriais" type="number"
+                class="form-control form-control-light" placeholder="0,00" required min="0" />
             </div>
 
             <div class="col-md-6 mb-3">
               <label for="imposto" class="form-label">
                 Imposto (%)
               </label>
-              <input id="imposto" v-model.number="form.imposto" type="number" class="form-control bg-light text-dark" placeholder="0,00"
-                required min="0" />
+              <input id="imposto" v-model.number="form.imposto" type="number" class="form-control form-control-light"
+                placeholder="0,00" required min="0" />
             </div>
 
           </div>
 
           <div class="d-flex justify-content-between">
-            <RouterLink to="/orcamento" type="button" class="btn btn-outline-secondary px-4">
+            <RouterLink to="/orcamento" type="button" class="btn btn-secondary px-4">
               Cancelar
             </RouterLink>
-            
+
             <button type="submit" class="btn btn-primary px-4">
               Cadastrar
             </button>
-            
+
           </div>
 
         </form>
