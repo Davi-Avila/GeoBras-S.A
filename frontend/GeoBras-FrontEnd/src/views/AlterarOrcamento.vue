@@ -7,13 +7,14 @@ import { Toast } from "bootstrap"
 
 const route = useRoute()
 const orcamento = ref<Orcamento | null>(null)
+const form = ref<Orcamento>({} as Orcamento)
 
 const router = useRouter()
 let toast: any = null
 let toastExcluir: any = null
 
 async function carregaOrcamento() {
-    const idOrcamento = route.params.idOrcamento as string
+    const idOrcamento = Number(route.params.idOrcamento)
     if (Number.isNaN(idOrcamento)) {
         console.error("ID do orçamento inválido")
         return
@@ -36,8 +37,6 @@ onMounted(() => {
 
 })
 
-
-const form = ref<Orcamento>({} as Orcamento)
 
 async function alterar(): Promise<void> {
     try {
@@ -66,7 +65,7 @@ async function excluir() {
         setTimeout(() => {router.push("/orcamento") }, 2000)
 
     } catch {
-        alert("Erro ao excluir orçamento!")
+        alert("Não é possível excluir um orçamento vinculado a uma obra!")
     }
 }
 

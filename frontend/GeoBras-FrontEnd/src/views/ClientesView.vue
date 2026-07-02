@@ -11,15 +11,15 @@ const id = ref<number | null>(null)
 const carregando = ref(true)
 
 async function pesquisarCliente() {
-    if(id.value) {
-    try{
+  if (id.value) {
+    try {
       const response = await http.get(`/clientes/${id.value}`)
       clientes.value = [response.data]
     } catch (error) {
       console.log('Erro ao buscar cliente:')
       clientes.value = []
     }
-  }else {
+  } else {
     const response = await getClientes()
     clientes.value = response
     carregando.value = false
@@ -35,39 +35,42 @@ onMounted(async () => {
 
 <template>
 
-<div style="display: flex;flex-direction: row;width: 100%;margin-top: 20px;">
-    <div style="display: flex;width: 100%;justify-content: center;">
-        <h1 >Cliente</h1>
-    </div>
-      <div style="display: flex;justify-content: end;margin-right: 20px;width: 100%;position: absolute;">
-          <RouterLink to="/clientes/novo" class="btn btn" style="background-color: #302c9b;">
-        + Novo cliente
+  <div style="display: flex;flex-direction: row;width: 100%;margin-top: 2%;">
+    <div style="display: flex;justify-content: end;margin-left: 85%;position: absolute;">
+      <RouterLink to="/clientes/novo" class="btn btn-primary" style=" background-color: #302c9b;">
+        + Novo Cliente
       </RouterLink>
-      </div>
+    </div>
+    <div style="display: flex;width: 100%;justify-content: center;">
+      <h1>Clientes</h1>
+    </div>
   </div>
 
 
-    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-        <div class="input-group mb-5" style="width: 50%">
-            <input v-model="id" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Digite o id do Cliente">
-            <button @click="pesquisarCliente()" class="btn btn-outline-secondary" type="button">Pesquisar</button>
-        </div>
+  <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <div class="input-group mb-5" style="width: 50%">
+      <input v-model="id" type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" placeholder="Digite o id do Cliente">
+      <button @click="pesquisarCliente()" class="btn btn-outline-secondary" type="button">Pesquisar</button>
     </div>
+  </div>
 
-    <div style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;">
-      
+  <div
+    style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;">
+
+  </div>
+  <div v-if="clientes && clientes.length > 0"
+    style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;"
+    class="row ps-4">
+    <div v-for="cliente in clientes" :key="cliente.idCliente" class="col-12 col-md-4 col-lg-3">
+      <CardCliente :cliente="cliente" />
     </div>
-    <div v-if="clientes && clientes.length > 0" style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;" class="row ps-4" >
-        <div v-for="cliente in clientes" :key="cliente.idCliente" class="col-12 col-md-4 col-lg-3">
-        <CardCliente :cliente="cliente"/>
-      </div>
-      </div>
-      <div v-else style="display: flex; justify-content: center; align-items: center; width: 100%;">
-        <p class="text-dark">Nenhum cliente encontrado.</p>
-      </div>
-    
-   
+  </div>
+  <div v-else style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <p class="text-dark">Nenhum cliente encontrado.</p>
+  </div>
+
+
 </template>
 
-<style>
-</style>
+<style></style>

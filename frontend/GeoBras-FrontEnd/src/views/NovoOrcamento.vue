@@ -17,17 +17,7 @@ const form = ref<Orcamento>({} as Orcamento)
 
 async function salvar(): Promise<void> {
   try {
-    await postOrcamento({
-      nomeOrcamento: form.value.nomeOrcamento,
-      deslocamento: form.value.deslocamento,
-      maoDeObra: form.value.maoDeObra,
-      servico: form.value.servico,
-      aluguelDeEquipamento: form.value.aluguelDeEquipamento,
-      somaMateriais: form.value.somaMateriais,
-      imposto: form.value.imposto,
-      idOrcamento: 0,
-      orcamentoTotal: 0
-    })
+    await postOrcamento(form.value)
 
     toast.show()
     setTimeout(() => { router.push("/orcamento") }, 2000)
@@ -35,9 +25,7 @@ async function salvar(): Promise<void> {
   } catch {
     alert("Erro ao cadastrar orçamento!")
   }
-
 }
-
 
 </script>
 <template>

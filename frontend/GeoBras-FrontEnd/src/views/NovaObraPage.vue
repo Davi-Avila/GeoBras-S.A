@@ -3,7 +3,7 @@ import { ref, onMounted } from 'vue';
 import { getClientes, getOrcamentos, getOrcamentosDisponiveis, postObra } from '../service/api';
 import { useRouter } from 'vue-router'
 import type { Orcamento } from '@/interfaces/Orcamento';
-import type { Obra, ObraForm } from '@/interfaces/Obra';
+import type { Obra } from '@/interfaces/Obra';
 import type Cliente from '@/interfaces/Cliente';
 
 const router = useRouter()
@@ -11,7 +11,7 @@ const router = useRouter()
 const orcamentos = ref<Orcamento[]>([])
 const clientes = ref<Cliente[]>([])
 
-const form = ref<ObraForm>({} as ObraForm)
+const form = ref<Obra>({} as Obra)
 
 // Carrega os orçamentos disponíveis assim que a página abre, pra popular o select
 onMounted(async () => {
@@ -76,6 +76,9 @@ function limparFormulario(): void {
     dataInicio: "",
     dataFimPrevisto: "",
     etapa: "",
+    orcamentoTotal: 0,
+    nomeCliente: "",
+    email: "",
     idCliente: 0,
     idOrcamento: 0
   }

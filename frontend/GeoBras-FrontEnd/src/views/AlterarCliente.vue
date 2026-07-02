@@ -1,43 +1,75 @@
 <script setup lang="ts">
 import type Cliente from '@/interfaces/Cliente';
-import { postCliente } from '@/service/api';
+import { deleteCliente, getClienteById, postCliente, putCliente } from '@/service/api';
 import { Toast } from 'bootstrap';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 
-//const route = useRoute()
-
+const route = useRoute()
 const router = useRouter()
+const cliente = ref<Cliente | null>(null)
+const form = ref<Cliente>({} as Cliente)
+
 let toast: any = null
+let toastExcluir: any = null
+
+async function carregaCliente() {
+    const idCliente = Number(route.params.idCliente)
+    if (Number.isNaN(idCliente)) {
+        console.error("ID do cliente inválido")
+        return
+    }
+
+    const response = await getClienteById(idCliente)
+    cliente.value = response
+    form.value = { ...response }
+
+}
 
 onMounted(() => {
     const toastLiveExample = document.getElementById('toast')
     toast = Toast.getOrCreateInstance(toastLiveExample!)
 
-   // const id = route.params.id
+    const toastLiveExampleExcluir = document.getElementById('toastExcluir')
+    toastExcluir = Toast.getOrCreateInstance(toastLiveExampleExcluir!)
+
+    carregaCliente()
 })
 
-const form = ref<Cliente>({} as Cliente)
 
-async function salvar(): Promise<void> {
+
+async function alterar(): Promise<void> {
     try {
-        await postCliente({
-            nomeCliente: form.value.nomeCliente,
-            email: form.value.email,
-            pais: form.value.pais,
-            CEP: form.value.CEP,
-            CPF: form.value.CPF,
-            CNPJ: form.value.CNPJ,
-            idCliente: 0
-        })
+        await putCliente(form.value)
+
         toast.show()
-        setTimeout(() => { router.push("/clientes") }, 2500)
+        setTimeout(() => { router.push("/clientes") }, 2000)
+
+    } catch {
+        alert("Erro ao alterar cliente!")
     }
-    catch {
-        alert("Erro ao cadastrar Cliente!")
+
+}
+
+async function excluir() {
+    const confirmar = confirm("Tem certeza que deseja excluir este cliente?")
+
+    if (!confirmar) {
+        return
+    }
+
+    try {
+        await deleteCliente(form.value.idCliente)
+
+        toastExcluir.show()
+        setTimeout(() => {router.push("/clientes") }, 2000)
+
+    } catch {
+        alert("Não é possível excluir um cliente vinculado a uma obra!")
     }
 }
+
 
 
 </script>
@@ -47,11 +79,11 @@ async function salvar(): Promise<void> {
         <div class="card mt-5">
 
             <div class="card-header">
-                <h4 class="mb-0">Cadastro de Cliente</h4>
+                <h4 class="mb-0">Alteração de Cliente</h4>
             </div>
 
             <div class="card-body">
-                <form @submit.prevent="salvar">
+                <form @submit.prevent="alterar">
 
                     <!-- Nome -->
                     <div class="mb-3">
@@ -110,6 +142,10 @@ async function salvar(): Promise<void> {
                             Cancelar
                         </RouterLink>
 
+                        <button type="button" class="btn btn-danger px-4" @click="excluir">
+                            Excluir
+                        </button>
+
                         <button type="submit" class="btn btn-primary px-4">
                             Cadastrar
                         </button>
@@ -128,7 +164,18 @@ async function salvar(): Promise<void> {
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                Cliente cadastrado com sucesso!
+                Cliente alterado com sucesso!
+            </div>
+        </div>
+    </div>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="toastExcluir" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header text-bg-danger">
+                <strong class="me-auto">Concluído</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Cliente excluído com sucesso!
             </div>
         </div>
     </div>
