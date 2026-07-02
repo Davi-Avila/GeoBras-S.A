@@ -25,7 +25,7 @@ async function pesquisarObra() {
       const response = await http.get(`/obras/${id.value}`)
       obras.value = [response.data]
     } catch (error) {
-      console.log('Erro ao buscar orçamento:')
+      console.log('Erro ao buscar obra')
       obras.value = []
     }
   

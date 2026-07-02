@@ -144,7 +144,7 @@ async function excluir() {
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <RouterLink to="/orcamento" type="button" class="btn btn-outline-secondary px-4">
+                        <RouterLink to="/orcamento" type="button" class="btn btn-secondary px-4">
                             Cancelar
                         </RouterLink>
 

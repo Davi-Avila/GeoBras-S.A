@@ -106,7 +106,7 @@ async function salvar(): Promise<void> {
                     </div>
 
                     <div class="d-flex justify-content-between">
-                        <RouterLink to="/clientes" type="button" class="btn btn-outline-secondary px-4">
+                        <RouterLink to="/clientes" type="button" class="btn btn-secondary px-4">
                             Cancelar
                         </RouterLink>
 

@@ -10,26 +10,33 @@ const clientes = ref([] as Cliente[])
 const id = ref<number | null>(null)
 const carregando = ref(true)
 
+async function carregarClientes() {
+  carregando.value = true
+  clientes.value = await getClientes()
+  carregando.value = false
+}
+
 async function pesquisarCliente() {
-  if (id.value) {
+  if (id.value == null || id.value === 0) {
+    await carregarClientes()
+    return
+  }
     try {
       const response = await http.get(`/clientes/${id.value}`)
       clientes.value = [response.data]
     } catch (error) {
-      console.log('Erro ao buscar cliente:')
+      console.log('Erro ao buscar cliente')
       clientes.value = []
     }
-  } else {
-    const response = await getClientes()
-    clientes.value = response
-    carregando.value = false
-  }
+}
+
+async function limparPesquisa() {
+  id.value = null
+  await carregarClientes()
 }
 
 onMounted(async () => {
-  const response = await getClientes()
-  clientes.value = response
-  carregando.value = false
+  carregarClientes()
 })
 </script>
 
@@ -42,7 +49,7 @@ onMounted(async () => {
       </RouterLink>
     </div>
     <div style="display: flex;width: 100%;justify-content: center;">
-      <h1>Clientes</h1>
+      <h1></h1>
     </div>
   </div>
 
@@ -52,6 +59,7 @@ onMounted(async () => {
       <input v-model="id" type="text" class="form-control" aria-label="Sizing example input"
         aria-describedby="inputGroup-sizing-default" placeholder="Digite o id do Cliente">
       <button @click="pesquisarCliente()" class="btn btn-outline-secondary" type="button">Pesquisar</button>
+      <button @click="limparPesquisa" class="btn btn-outline-danger">Limpar</button>
     </div>
   </div>
 

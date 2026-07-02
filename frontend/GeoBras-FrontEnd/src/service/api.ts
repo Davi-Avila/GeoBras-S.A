@@ -1,6 +1,6 @@
 
 import type Cliente from '@/interfaces/Cliente'
-import type { ObraForm } from '@/interfaces/Obra'
+import type { Obra } from '@/interfaces/Obra'
 import type { Orcamento } from '@/interfaces/Orcamento'
 import axios from 'axios'
 
@@ -39,8 +39,8 @@ export async function getObras() {
   return response.data
 }
 
-export async function postObra(obra: ObraForm) {
-  await api.post<ObraForm>('/obras', obra)
+export async function postObra(obra: Obra) {
+  await api.post<Obra>('/obras', obra)
 }
 
 export async function deleteObra(idObra: number) {
@@ -52,7 +52,7 @@ export async function getObraById(idObra: string | number) {
   return response.data
 }
 
-export async function putObra(obra: ObraForm) {
+export async function putObra(obra: Obra) {
   await api.put(`/obras/${obra.idObra}`, obra)
 }
 

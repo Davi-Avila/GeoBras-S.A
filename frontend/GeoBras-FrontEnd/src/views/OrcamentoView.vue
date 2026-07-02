@@ -10,66 +10,77 @@ const orcamentos = ref([] as Orcamento[])
 const id = ref<number | null>(null)
 const carregando = ref(true)
 
+async function carregarOrcamentos() {
+  carregando.value = true
+  orcamentos.value = await getOrcamentos()
+  carregando.value = false
+}
+
 async function pesquisarOrcamento() {
-  if(id.value) {
-    try{
-      const response = await http.get(`/orcamento/${id.value}`)
-      orcamentos.value = [response.data]
-    } catch (error) {
-      console.log('Erro ao buscar orçamento:')
-      orcamentos.value = []
-    }
-  }else {
-    const response = await getOrcamentos()
-    orcamentos.value = response
-    carregando.value = false
+  if (id.value == null || id.value === 0) {
+    await carregarOrcamentos()
+    return
+  }
+  try {
+    const response = await http.get(`/orcamento/${id.value}`)
+    orcamentos.value = [response.data]
+  } catch (error) {
+    console.log('Erro ao buscar orçamento')
+    orcamentos.value = []
   }
 }
+
+async function limparPesquisa() {
+  id.value = null
+  await carregarOrcamentos()
+}
+
 onMounted(async () => {
-  const response = await getOrcamentos()
-  orcamentos.value = response
-  carregando.value = false
+  carregarOrcamentos()
 })
 
 </script>
 <template>
   <div style="display: flex;flex-direction: row;width: 100%;margin-top: 2%;">
-    
+
     <div style="display: flex;justify-content: end;margin-left: 85%;position: absolute;">
-          <RouterLink to="/orcamento/novo" class="btn btn-primary" style=" background-color: #302c9b;">
+      <RouterLink to="/orcamento/novo" class="btn btn-primary" style=" background-color: #302c9b;">
         + Novo Orçamento
-        </RouterLink>
-      </div>
+      </RouterLink>
+    </div>
     <div style="display: flex;width: 100%;justify-content: center;">
-        <h1 >Orçamento</h1>
+      <h1>Orçamento</h1>
     </div>
-      
+
   </div>
-      
-      
-      
 
-        
-    <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-        <div class="input-group mb-5" style="width: 50%">
-            <input v-model="id" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Digite o id do Orçamento">
-            <button @click="pesquisarOrcamento()" class="btn btn-outline-secondary" type="button">Pesquisar</button>
-        </div>
+
+
+
+
+  <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <div class="input-group mb-5" style="width: 50%">
+      <input v-model="id" type="text" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" placeholder="Digite o id do Orçamento">
+      <button @click="pesquisarOrcamento()" class="btn btn-outline-secondary" type="button">Pesquisar</button>
+      <button @click="limparPesquisa" class="btn btn-outline-danger">Limpar</button>
     </div>
+  </div>
 
-   
-      <div v-if="orcamentos && orcamentos.length > 0" style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 3%;height: 100%;flex-wrap: wrap;" class="row ps-4" >
-        <div v-for="orcamento in orcamentos" :key="orcamento.idOrcamento" class="col-12 col-md-4 col-lg-3">
-        <CardOrcamento :orcamento="orcamento"/>
-      </div>
-      </div>
-      <div v-else style="display: flex; justify-content: center; align-items: center; width: 100%;">
-        <p class="text-dark">Nenhum orçamento encontrado.</p>
-      </div>
-      
-   
-    
-    
+
+  <div v-if="orcamentos && orcamentos.length > 0"
+    style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 3%;height: 100%;flex-wrap: wrap;"
+    class="row ps-4">
+    <div v-for="orcamento in orcamentos" :key="orcamento.idOrcamento" class="col-12 col-md-4 col-lg-3">
+      <CardOrcamento :orcamento="orcamento" />
+    </div>
+  </div>
+  <div v-else style="display: flex; justify-content: center; align-items: center; width: 100%;">
+    <p class="text-dark">Nenhum orçamento encontrado.</p>
+  </div>
+
+
+
+
 </template>
-<style>
-</style>
+<style></style>
