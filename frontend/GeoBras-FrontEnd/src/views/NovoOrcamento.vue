@@ -29,7 +29,7 @@ async function salvar(): Promise<void> {
     })
 
     toast.show()
-    setTimeout(() => { router.push("/orcamento") }, 2500)
+    setTimeout(() => { router.push("/orcamento") }, 2000)
 
   } catch {
     alert("Erro ao cadastrar orçamento!")
@@ -130,7 +130,6 @@ async function salvar(): Promise<void> {
     <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header text-bg-success">
         <strong class="me-auto">Concluído</strong>
-        <small>11 mins ago</small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">

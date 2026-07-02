@@ -76,6 +76,6 @@ export async function getOrcamentoById(idOrcamento: string | number) {
   return response.data
 }
 
-export async function putOrcamento(idOrcamento: number, orcamento: Orcamento) {
-  await api.put(`/orcamento/${idOrcamento}`, orcamento)
+export async function putOrcamento(orcamento: Orcamento) {
+  await api.put(`/orcamento/${orcamento.idOrcamento}`, orcamento)
 }

@@ -149,7 +149,16 @@ body.dark .chart-value {
 body.dark .charts-title {
   color: #4d90fe !important;
 }
-body.dark .text-dark{
-  color: #555 !important;
+
+body.dark .form-control-light {
+    background: white !important;
+    color: black !important;
+    border-color: #ced4da !important;
 }
+
+.card-header,
+.card-header h4 {
+    color: white !important;
+}
+
 </style>
