@@ -33,15 +33,17 @@ onMounted(async () => {
 
 </script>
 <template>
-  <div style="display: flex;flex-direction: row;width: 100%;margin-top: 20px;">
-    <div style="display: flex;width: 100%;justify-content: center;">
-        <h1 >Orçamento</h1>
-    </div>
-      <div style="display: flex;justify-content: end;margin-right: 20px;width: 100%;position: absolute;">
-          <RouterLink to="/orcamento/novo" class="btn btn-primary" style="background-color: #302c9b;">
+  <div style="display: flex;flex-direction: row;width: 100%;margin-top: 2%;">
+    
+    <div style="display: flex;justify-content: end;margin-left: 85%;position: absolute;">
+          <RouterLink to="/orcamento/novo" class="btn btn-primary" style=" background-color: #302c9b;">
         + Novo Orçamento
         </RouterLink>
       </div>
+    <div style="display: flex;width: 100%;justify-content: center;">
+        <h1 >Orçamento</h1>
+    </div>
+      
   </div>
       
       
@@ -56,7 +58,7 @@ onMounted(async () => {
     </div>
 
    
-      <div v-if="orcamentos && orcamentos.length > 0" style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;" class="row ps-4" >
+      <div v-if="orcamentos && orcamentos.length > 0" style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 3%;height: 100%;flex-wrap: wrap;" class="row ps-4" >
         <div v-for="orcamento in orcamentos" :key="orcamento.idOrcamento" class="col-12 col-md-4 col-lg-3">
         <CardOrcamento :orcamento="orcamento"/>
       </div>
