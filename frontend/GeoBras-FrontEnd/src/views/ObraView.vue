@@ -37,7 +37,7 @@ async function pesquisarObra() {
 
     <div class="row g-4">
       <div v-for="obra in obras" :key="obra.idObra" class="col-12 col-sm-6 col-lg-3">
-        <CardObra :obra="obra"/>
+        <CardDaObra :obra="obra"/>
       </div>
     </div>
     

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import geobras_remove from "@/img/geobras_remove.png";
 import {ref} from 'vue';
+import { RouterLink } from "vue-router";
 
 const isDark = ref(false)
 
@@ -10,81 +11,116 @@ function toggleTheme() {
 }
 </script>
 <template>
-  <nav class="navbar" style="background-color: #0047ab;padding: 0.5% 1%;height: 30%; ">
- <div class="container-fluid py-1 px-3">
-  <div class="img_botao">
-  <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#menuNavbar"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    <RouterLink to="/">
+  <nav class="navbar navbar-dark sticky-top" style="background-color: #0047ab;">
+  <div class="container-fluid">
+
+    <!-- Botão do menu -->
+    <button
+      class="navbar-toggler me-3"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Logo -->
+    <RouterLink to="/" class="navbar-brand">
       <img :src="geobras_remove" alt="Logo" class="logo" />
     </RouterLink>
-</div>
-    <div class="collapse navbar-collapse" id="menuNavbar">
-        <ul class="navbar-nav ms-auto">
+
+    <!-- Botão tema -->
+    <button class="btn text-white" @click="toggleTheme">
+      <i :class="isDark ? 'bi bi-sun-fill' : 'bi bi-moon-fill'"></i>
+    </button>
+
+    <!-- Menu lateral -->
+    <div
+      class="offcanvas offcanvas-start text-bg-dark"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+          Menu
+        </h5>
+
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+        ></button>
+      </div>
+
+      <div class="offcanvas-body">
+        <ul class="navbar-nav">
+
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/obra">Obra</RouterLink>
+            <RouterLink
+              class="nav-link"
+              to="/obra"
+            >
+              Obra
+            </RouterLink>
           </li>
+
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/orcamento">Orçamento</RouterLink>
+            <RouterLink
+              class="nav-link"
+              to="/orcamento"
+            >
+              Orçamento
+            </RouterLink>
           </li>
+
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/clientes">Clientes</RouterLink>
+            <RouterLink
+              class="nav-link"
+              to="/clientes"
+            >
+              Clientes
+            </RouterLink>
           </li>
         </ul>
       </div>
-   
-     <button class="btn ms-auto" style="color: white;" @click="toggleTheme">
-      <i :class="isDark ? 'bi bi-sun-fill' : 'bi bi-moon-fill'"></i>
-    </button>
-  
-  <div class="texto" margin-left: auto;>
-    
-      <input type="text" placeholder="Search..." 
-      style="border-radius: 5cap; background-color:aliceblue ;border: none;">
-   <i class="bi bi-search"></i>
-  </div>
     </div>
-  </nav>
+
+  </div>
+</nav>
 </template>
 <style>
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+body .offcanvas{
+  background-color: #052c65 !important;
+}
+
 body.dark {
   background-color: #1a1a1a !important;
   color: white !important;
-}
-
-body.dark .card {
-  background-color: #2d2d2d !important;
-  color: white !important;
-  border-color: #444 !important;
 }
 
 body.dark .navbar {
   background-color: #111 !important;
 }
 
-body.dark .cards-wrapper {
-  background-color: #1a1a1a !important;
+body.dark .offcanvas {
+  background-color: #052c65 !important;
 }
 
-body.dark a {
-  color: #aaa !important;
+body.dark .nav-link {
+  color: #fff !important;
 }
 
-body.dark i {
-  color: #aaa !important;
+body.dark .form-control {
+  background-color: #2d2d2d;
+  color: white;
+  border-color: #555;
 }
-li {
-  list-style: none;
-  text-decoration: none;
-}
-.logo {
-  width: 20%;
-  height: auto;
-}
+
 </style>

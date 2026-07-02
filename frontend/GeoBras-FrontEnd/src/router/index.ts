@@ -39,6 +39,11 @@ const router = createRouter({
       name: 'novaOrcamento',
       path: '/orcamento/novo',
       component: NovoOrcamento
+    },
+    {
+      name: 'clientes',
+      path: '/clientes',
+      component: ClientesView
     }
 
   ],
