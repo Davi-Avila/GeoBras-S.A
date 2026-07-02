@@ -4,7 +4,7 @@ import http from '@/http'
 import { RouterLink } from 'vue-router'
 import type Cliente from '@/interfaces/Cliente'
 import { getClientes } from '@/service/api'
-import CardCliente from '@/components/CardCliente.vue'
+import CardCliente from '@/components/Cardcliente.vue'
 
 const clientes = ref([] as Cliente[])
 const id = ref<number | null>(null)
@@ -40,7 +40,7 @@ onMounted(async () => {
         <h1 >Cliente</h1>
     </div>
       <div style="display: flex;justify-content: end;margin-right: 20px;width: 100%;position: absolute;">
-          <RouterLink to="/cliente/novo" class="btn btn" style="background-color: #302c9b;">
+          <RouterLink to="/clientes/novo" class="btn btn" style="background-color: #302c9b;">
         + Novo cliente
       </RouterLink>
       </div>
