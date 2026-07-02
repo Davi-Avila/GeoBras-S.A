@@ -8,7 +8,6 @@ import NovoOrcamento from '@/views/NovoOrcamento.vue'
 import NovoCliente from '@/views/NovoCliente.vue'
 import AlterarCliente from '@/views/AlterarCliente.vue'
 import AlterarOrcamento from '@/views/AlterarOrcamento.vue'
-import AlterarObra from '@/views/AlterarObra.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -49,8 +48,8 @@ const router = createRouter({
       component: NovoCliente
     },
     {
-      name: 'alterarCliente',
-      path: '/alterar-cliente/:idCliente',
+      name: 'editarCliente',
+      path: '/clientes/alterar/:id',
       component: AlterarCliente
     },
     {
@@ -59,10 +58,10 @@ const router = createRouter({
       component: AlterarOrcamento
     },
     {
-      name: 'alterarObra',
-      path: '/alterar-obra/:idObra',
-      component: AlterarObra
-    }
+  path: '/drive',
+  name: 'drive',
+  component: () => import('@/views/DrivePage.vue')
+}
 
   ],
 })
