@@ -1,6 +1,6 @@
 export interface Orcamento{
     idOrcamento: number
-    nome: string
+    nomeOrcamento: string
     deslocamento: number
     maoDeObra: number
     servico: string

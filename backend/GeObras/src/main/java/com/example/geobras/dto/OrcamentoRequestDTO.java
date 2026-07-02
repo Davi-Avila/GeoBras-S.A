@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public record OrcamentoRequestDTO(
+        @NotBlank(message = "Insira o nome do orçamento")
+        String nomeOrcamento,
+
         @Min(value = 0, message = "Insira uma distância válida")
         @NotNull(message = "Insira o deslocamento")
         Double deslocamento,
