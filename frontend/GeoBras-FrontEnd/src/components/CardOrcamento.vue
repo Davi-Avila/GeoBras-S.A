@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Orcamento } from '@/interfaces/Orcamento';
 import { type PropType } from 'vue';
+import { deleteOrcamento } from '@/service/api';
 defineProps({
     orcamento: {
         type: Object as PropType<Orcamento>,
@@ -53,13 +54,17 @@ defineProps({
               <i class="bi bi-cash "> Aluguel de equipamento - R$ {{ orcamento.aluguelDeEquipamento }}</i>
             </p>
             </div>
+
             <div style="justify-content: start; display: flex;">
               <p class="text medium mb-0">
               <i class="bi bi-cash "> Orçamento total  R$ {{ orcamento.orcamentoTotal }}</i>
             </p>
             </div>
-            
 
+            <div style="justify-content: start; display: flex;">
+              <RouterLink :to="`/alterar-orcamento/${orcamento.idOrcamento}`" class="btn btn-primary btn-lg mt-2 " type="button">Alterar</RouterLink>
+            </div>
+            
               
           </div>
         </div>

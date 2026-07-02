@@ -58,6 +58,10 @@ defineProps({
             </p>
             </div>
             
+             <div style="justify-content: start; display: flex;">
+              <RouterLink :to="`/alterar-obras/${obra.idObra}`" class="btn btn-primary btn-lg mt-2 " type="button">Alterar</RouterLink>
+            </div>
+
 
               
           </div>
