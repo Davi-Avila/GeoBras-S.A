@@ -148,7 +148,6 @@ async function salvar(): Promise<void> {
 
 .card-header {
   background-color: 13, 110, 253, .25;
-  color: white;
 }
 
 .card-header h4 {
