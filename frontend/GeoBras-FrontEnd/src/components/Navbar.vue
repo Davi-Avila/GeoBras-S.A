@@ -149,5 +149,7 @@ body.dark .chart-value {
 body.dark .charts-title {
   color: #4d90fe !important;
 }
-
+body.dark .text-dark{
+  color: #555 !important;
+}
 </style>
