@@ -19,6 +19,11 @@ public record ObraResponseDTO(
 
         String nomeCliente,
 
-        String email
+        String email,
+
+        Long idOrcamento,
+
+        Long idCliente
+
         ) {
 }

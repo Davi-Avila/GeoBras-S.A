@@ -7,6 +7,7 @@ import com.example.geobras.model.Cliente;
 import com.example.geobras.model.Obra;
 import com.example.geobras.model.Orcamento;
 import com.example.geobras.repository.ObraRepository;
+import com.example.geobras.repository.OrcamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,13 @@ public class ObraService {
     private final ObraRepository obraRepository;
     private final ClienteService clienteService;
     private final OrcamentoService orcamentoService;
+    private final OrcamentoRepository orcamentoRepository;
 
-    public ObraService(ObraRepository obraRepository, ClienteService clienteService, OrcamentoService orcamentoService){
+    public ObraService(ObraRepository obraRepository, ClienteService clienteService, OrcamentoService orcamentoService, OrcamentoRepository orcamentoRepository){
         this.obraRepository = obraRepository;
         this.clienteService = clienteService;
         this.orcamentoService = orcamentoService;
+        this.orcamentoRepository = orcamentoRepository;
     }
 
     public List<ObraResponseDTO> listar(){
@@ -71,6 +74,13 @@ public class ObraService {
         Obra obra = obraRepository.findById(idObra)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Obra não encontrada"));
 
+        Orcamento orcamento = obra.getOrcamento();
+
+        if (orcamento != null) {
+            orcamento.setObra(null);
+            orcamentoRepository.save(orcamento);
+        }
+
         obraRepository.delete(obra);
     }
 
@@ -91,7 +101,9 @@ public class ObraService {
                 obra.getEtapa(),
                 obra.getOrcamento().getOrcamentoTotal(),
                 obra.getCliente().getNomeCliente(),
-                obra.getCliente().getEmail()
+                obra.getCliente().getEmail(),
+                obra.getOrcamento().getIdOrcamento(),
+                obra.getCliente().getIdCliente()
         );
     }
 }
