@@ -118,9 +118,36 @@ body.dark .nav-link {
 }
 
 body.dark .form-control {
-  background-color: #2d2d2d;
+  background-color: #2d2d2d !important;
   color: white;
-  border-color: #555;
+  border-color: #555 !important;
+}
+
+body.dark .card{
+  background-color: #2d2d2d !important;
+  color: white !important;
+  border-color: #555 !important;
+}
+body.dark .charts-frame{
+   background-color: #2d2d2d !important;
+  color: white !important;
+  border-color: #555 !important; 
+}
+body.dark .chart-card h3 {
+  color: #e0e0e0 !important;
+}
+
+body.dark .bar-wrapper {
+  background-color: #1f1f1f !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .chart-value {
+  color: #4d90fe !important;
+}
+
+body.dark .charts-title {
+  color: #4d90fe !important;
 }
 
 </style>
