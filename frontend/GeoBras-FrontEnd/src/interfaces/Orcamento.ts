@@ -8,5 +8,4 @@ export interface Orcamento{
     somaMateriais: number
     imposto: number
     orcamentoTotal: number
-    idObra: number
 }
