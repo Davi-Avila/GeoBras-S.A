@@ -13,7 +13,7 @@ defineProps({
     <div style="width: 100% ;">
 
         <div class="card h-80 shadow border-0">
-          <div style="width: 100%;height: 200px; font-size: 1.1rem;" >
+          <div style="width: 100%; font-size: 1.1rem;" >
             <h6 class="card-title fw-bold " style="margin-bottom: 5px;justify-self: start;">Nome - {{orcamento.nomeOrcamento}}</h6>
             <div style="margin-bottom: 5px;justify-content: start; display: flex;">
             <p class="text small mb-0">

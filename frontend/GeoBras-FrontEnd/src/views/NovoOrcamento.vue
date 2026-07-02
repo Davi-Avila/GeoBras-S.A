@@ -32,7 +32,7 @@ async function salvar(): Promise<void> {
     setTimeout(() => { router.push("/orcamento") }, 2500)
 
   } catch {
-
+    alert("Erro ao cadastrar orçamento!")
   }
 
 }
@@ -52,8 +52,8 @@ async function salvar(): Promise<void> {
 
           <!-- Nome -->
           <div class="mb-3">
-            <label for="nome" class="form-label">Nome</label>
-            <input id="nome" v-model="form.nomeOrcamento" type="text" class="form-control"
+            <label for="nomeOrcamento" class="form-label">Nome</label>
+            <input id="nomeOrcamento" v-model="form.nomeOrcamento" type="text" class="form-control"
               placeholder="Digite o nome do orçamento" required />
           </div>
 

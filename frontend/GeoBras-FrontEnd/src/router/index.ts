@@ -6,6 +6,7 @@ import ClientesView from '@/views/MaterialView.vue'
 import NovaObraPage from '@/views/NovaObraPage.vue'
 import MaterialView from '@/views/MaterialView.vue'
 import NovoOrcamento from '@/views/NovoOrcamento.vue'
+import NovoCliente from '@/views/NovoCliente.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       name: 'clientes',
       path: '/clientes',
       component: ClientesView
+    },
+    {
+      name: 'novoCliente',
+      path: '/clientes/novo',
+      component: NovoCliente
     }
 
   ],
