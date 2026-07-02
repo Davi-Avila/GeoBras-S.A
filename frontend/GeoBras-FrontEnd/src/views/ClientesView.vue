@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import http from '@/http'
-import CardDaObra from '@/components/CardDaObra.vue'
 import { RouterLink } from 'vue-router'
-import Cliente from '@/interfaces/Cliente'
+import type Cliente from '@/interfaces/Cliente'
 import { getClientes } from '@/service/api'
+import CardCliente from '@/components/CardCliente.vue'
 
 const clientes = ref([] as Cliente[])
 const id = ref<number | null>(null)
@@ -59,7 +59,7 @@ onMounted(async () => {
     </div>
     <div v-if="clientes && clientes.length > 0" style="display: flex;flex-direction: row;width: 100%;justify-content: center; gap: 10px;height: 100%;flex-wrap: wrap;" class="row ps-4" >
         <div v-for="cliente in clientes" :key="cliente.idCliente" class="col-12 col-md-4 col-lg-3">
-        <Cardcliente :cliente="cliente"/>
+        <CardCliente :cliente="cliente"/>
       </div>
       </div>
       <div v-else style="display: flex; justify-content: center; align-items: center; width: 100%;">

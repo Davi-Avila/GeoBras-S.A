@@ -9,7 +9,7 @@ defineProps({
 })
 </script>
 <template>
-    <div style="width: 100% ;height: 300px;">
+    <div style="width: 100% ;">
 
         <div class="card h-100 shadow border-0" >
           <div style="width: 100%; font-size: 1.1rem;">

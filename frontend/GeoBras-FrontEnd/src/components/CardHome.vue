@@ -8,7 +8,7 @@ defineProps(["titulo", "icone"]);
         <div class="card">
           <div class="card-body">
             <i class="card-title bi bi-buildings"></i>
-            <P class="card-text" style="color: white">Obras</P>
+            <p class="card-text" style="color: white">Obras</p>
           </div>
         </div>
       </RouterLink>
@@ -18,7 +18,7 @@ defineProps(["titulo", "icone"]);
         <div class="card">
           <div class="card-body">
             <i class="card-title bi bi-coin"></i>
-            <P class="card-text" style="color: white">Orçamento</P>
+            <p class="card-text" style="color: white">Orçamento</p>
           </div>
         </div>
       </RouterLink>
@@ -28,7 +28,7 @@ defineProps(["titulo", "icone"]);
         <div class="card">
           <div class="card-body">
             <i class="card-title bi bi-person"></i>
-            <P class="card-text">Clientes</P>
+            <p class="card-text">Clientes</p>
           </div>
         </div>
       </RouterLink>
