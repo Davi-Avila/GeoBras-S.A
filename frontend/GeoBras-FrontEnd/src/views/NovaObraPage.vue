@@ -171,7 +171,7 @@ function cancelar(): void {
   </select>
 </div>
      <div class="row">
-    <button class="btn btn-secondary col-1" type="button" @click="cancelar">Cancelar</button>
+    <button class="btn btn-secondary col-1" style="margin-left: 1%;"  type="button" @click="cancelar">Cancelar</button>
     <button class="cadastro btn btn-primary col-1"   type="submit" >Cadastrar</button>
    
   </div>
