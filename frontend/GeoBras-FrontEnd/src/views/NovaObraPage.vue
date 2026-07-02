@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import type Obra from '@/interfaces/Obra';
-import {ref} from 'vue'; 
-import { postObra } from '../service/api';
+import {ref, onMounted} from 'vue'; 
+import { getOrcamentos, postObra } from '../service/api';
 import { useRouter } from 'vue-router'
-
+import type { Orcamento } from '@/interfaces/Orcamento';
+ 
 const router = useRouter()
+
+const orcamentos = ref<Orcamento[]>([])
 
 const form = ref({
   idObra: 0,
@@ -15,25 +18,57 @@ const form = ref({
   dataInicio: '',
   dataFimPrevisto: '',
   etapa: '',
+  idOrcamento: 0,
   orcamentoTotal: 0
 })
 
-
+// Carrega os orçamentos disponíveis assim que a página abre, pra popular o select
+onMounted(async () => {
+  try {
+    orcamentos.value = await getOrcamentos()
+  } catch (error) {
+    console.error(error)
+    alert('Erro ao carregar orçamentos.')
+  }
+})
 
 function validarFormulario(): boolean {
   if (!form.value.nomeObra || !form.value.endereco || !form.value.nomeCliente) {
     alert('Preencha todos os campos obrigatórios.')
     return false
   }
+  if (!form.value.idOrcamento) {
+    alert('Selecione um orçamento.')
+    return false
+  }
+   if (!dataFinalValida(form.value.dataInicio, form.value.dataFimPrevisto)) {
+    alert('A data final não pode ser anterior à data inicial.')
+    return false
+  }
   return true
+}
+
+function dataFinalValida(dataInicio: string, dataFim: string): boolean {
+  if (!dataInicio || !dataFim) return true
+  return new Date(dataFim) >= new Date(dataInicio)
 }
 
 async function salvar(): Promise<void> {
   if (!validarFormulario()) return
 
+  // Busca o orçamento selecionado para obter o valor total correspondente,
+  // já que o formulário não guarda esse valor diretamente
+  const orcamentoSelecionado = orcamentos.value.find(
+    o => o.idOrcamento === form.value.idOrcamento
+  )
+
+  if (!orcamentoSelecionado) return
+
+  form.value.orcamentoTotal = orcamentoSelecionado.orcamentoTotal
+
   try {
-   
     const obra: Obra = {
+      idOrcamento:     form.value.idOrcamento,
       idObra:          form.value.idObra,
       nomeObra:        form.value.nomeObra,
       endereco:        form.value.endereco,
@@ -42,7 +77,7 @@ async function salvar(): Promise<void> {
       dataInicio:      new Date(form.value.dataInicio),
       dataFimPrevisto: new Date(form.value.dataFimPrevisto),
       etapa:           form.value.etapa,
-      orcamentoTotal:  Number(form.value.orcamentoTotal)
+      orcamentoTotal:  form.value.orcamentoTotal
     }
 
     await postObra(obra)
@@ -56,7 +91,6 @@ async function salvar(): Promise<void> {
   }
 }
 
-
 function limparFormulario(): void {
   form.value = {
     idObra: 0,
@@ -67,6 +101,7 @@ function limparFormulario(): void {
     dataInicio: '',
     dataFimPrevisto: '',
     etapa: '',
+    idOrcamento: 0,
     orcamentoTotal: 0
   }
 }
@@ -126,10 +161,15 @@ function cancelar(): void {
         </div>
  
       
-    <div class="col-2 mb-3">
-      <label class="form-label">Orçamento total</label>
-      <input type="number" class="form-control" v-model="form.orcamentoTotal"  />
-    </div>
+     <div class="col-3 mb-3">
+  <label class="form-label">Orçamento</label>
+  <select class="form-select" v-model.number="form.idOrcamento" required>
+    <option :value="0" disabled>Selecione um orçamento</option>
+    <option v-for="orcamento in orcamentos" :key="orcamento.idOrcamento" :value="orcamento.idOrcamento">
+      {{ orcamento.nomeOrcamento }} — R$ {{ orcamento.orcamentoTotal }}
+    </option>
+  </select>
+</div>
      <div class="row">
     <button class="btn btn-secondary col-1" type="button" @click="cancelar">Cancelar</button>
     <button class="cadastro btn btn-primary col-1"   type="submit" >Cadastrar</button>

@@ -44,6 +44,11 @@ const router = createRouter({
       name: 'novoCliente',
       path: '/clientes/novo',
       component: NovoCliente
+    },
+    {
+      name: 'editarCliente',
+      path: '/clientes/editar/:id',
+      component: NovoCliente
     }
 
   ],

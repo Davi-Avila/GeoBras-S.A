@@ -10,5 +10,10 @@ export default interface Obra{
     orcamentoTotal: Number
     nomeCliente: String
     email: String
+    idOrcamento: number
+}
 
+export interface ObraDetalhes extends Obra {
+  nomeOrcamento: string
+  orcamentoTotal: number
 }

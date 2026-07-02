@@ -4,7 +4,7 @@ import http from '@/http'
 import { RouterLink } from 'vue-router'
 import type Cliente from '@/interfaces/Cliente'
 import { getClientes } from '@/service/api'
-import CardCliente from '@/components/CardCliente.vue'
+import CardCliente from '@/components/Cardcliente.vue'
 
 const clientes = ref([] as Cliente[])
 const id = ref<number | null>(null)

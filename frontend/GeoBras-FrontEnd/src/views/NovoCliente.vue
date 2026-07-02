@@ -3,10 +3,10 @@ import type Cliente from '@/interfaces/Cliente';
 import { postCliente } from '@/service/api';
 import { Toast } from 'bootstrap';
 import { onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 
-
+//const route = useRoute()
 
 const router = useRouter()
 let toast: any = null
@@ -14,6 +14,8 @@ let toast: any = null
 onMounted(() => {
     const toastLiveExample = document.getElementById('toast')
     toast = Toast.getOrCreateInstance(toastLiveExample!)
+
+   // const id = route.params.id
 })
 
 const form = ref<Cliente>({} as Cliente)
