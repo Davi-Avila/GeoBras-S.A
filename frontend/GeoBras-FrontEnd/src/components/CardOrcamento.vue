@@ -41,6 +41,12 @@ defineProps({
               <i class="bi bi-cash "> Imposto - {{ orcamento.imposto }}%</i>
             </p>
             </div>
+            <div style="margin-bottom: 5px;justify-content: start; display: flex;">
+              <p class="text small mb-0">
+              <i class="bi bi-cash "> Soma dos Materiais  R$ {{ orcamento.somaMateriais }}</i>
+            </p>
+            </div>
+            
             
             <div style="margin-bottom: 5px;justify-content: start; display: flex;border-bottom: 1px solid #ccc; padding-bottom: 15px;">
               <p class="text small mb-0">
