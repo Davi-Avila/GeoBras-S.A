@@ -24,6 +24,9 @@ public class Orcamento {
     private Double imposto;
     private Double orcamentoTotal;
 
+    @OneToOne(mappedBy = "orcamento")
+    private Obra obra;
+
 
     public Orcamento(){}
 }

@@ -2,6 +2,7 @@ package com.example.geobras.controller;
 
 import com.example.geobras.dto.OrcamentoRequestDTO;
 import com.example.geobras.dto.OrcamentoResponseDTO;
+import com.example.geobras.model.Orcamento;
 import com.example.geobras.service.OrcamentoService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -29,6 +30,12 @@ public class OrcamentoController {
     @GetMapping("/{id}")
     public OrcamentoResponseDTO buscarPorId(@PathVariable Long id){
         return service.buscarPorId(id);
+    }
+
+    @Operation(summary = "Listar orçamentos disponiveis", description = "Lista apenas orçamentos sem nenhuma obra correspondente")
+    @GetMapping("/disponiveis")
+    public List<OrcamentoResponseDTO> buscarOrcamentosDisponiveis(){
+        return service.buscarOrcamentosDisponiveis();
     }
 
     @Operation(summary = "Salvar orçamento", description = "Salva um novo orçamento")
